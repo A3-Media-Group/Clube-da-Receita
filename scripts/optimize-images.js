@@ -17,20 +17,26 @@ const PUBLIC_IMAGES_DIR = path.join(ROOT, 'public', 'images');
 const RESULTS_PATH = path.join(__dirname, '.fetch-results.json');
 
 const MAX_WIDTH = 1600;
+const SMALL_WIDTH = 640; // variante leve para o srcset (telas pequenas / preview)
 const WEBP_QUALITY = 82;
 
 async function optimizeOne(item) {
   const srcPath = item.originalPath;
   const destPath = path.join(PUBLIC_IMAGES_DIR, item.pasta, `${item.slug}.webp`);
+  const smallDestPath = path.join(PUBLIC_IMAGES_DIR, item.pasta, `${item.slug}-small.webp`);
   fs.mkdirSync(path.dirname(destPath), { recursive: true });
 
-  const image = sharp(srcPath);
-  const meta = await image.metadata();
+  const meta = await sharp(srcPath).metadata();
 
-  await image
+  await sharp(srcPath)
     .resize({ width: MAX_WIDTH, withoutEnlargement: true })
     .webp({ quality: WEBP_QUALITY })
     .toFile(destPath);
+
+  await sharp(srcPath)
+    .resize({ width: SMALL_WIDTH, withoutEnlargement: true })
+    .webp({ quality: WEBP_QUALITY })
+    .toFile(smallDestPath);
 
   const outStat = fs.statSync(destPath);
   const outMeta = await sharp(destPath).metadata();
