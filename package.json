@@ -1,0 +1,16 @@
+{
+  "name": "clube-da-receita-image-tools",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Ferramentas locais para buscar e otimizar imagens do site Clube da Receita. O site em si continua 100% estatico (sem build/Node) -- estas ferramentas so rodam localmente para preparar os arquivos em public/images.",
+  "type": "commonjs",
+  "scripts": {
+    "fetch-images": "node scripts/fetch-images.js"
+  },
+  "dependencies": {
+    "sharp": "^0.33.5"
+  },
+  "allowScripts": {
+    "sharp@0.33.5": true
+  }
+}

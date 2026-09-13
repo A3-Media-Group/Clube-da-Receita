@@ -1,0 +1,158 @@
+Busca de imagens — Clube da Receita
+Log final consolidado em: 2026-09-13T18:00:21.240Z
+Chaves configuradas: PEXELS_API_KEY=false | PIXABAY_API_KEY=false
+------------------------------------------------------------------------------
+OK   [receitas/tacaca] "yellow soup bowl broth"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Broth Soups photo and picture
+     arquivo final: public\images\receitas\tacaca.webp
+
+OK   [receitas/pato-no-tucupi] "roasted duck brazilian dish"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Roasted Duck Meal photo and picture
+     arquivo final: public\images\receitas\pato-no-tucupi.webp
+
+OK   [receitas/acaraje] "falafel bean fritter fried"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Slovakian Cuisine Fried Fritters photo and picture
+     arquivo final: public\images\receitas\acaraje.webp
+
+OK   [receitas/baiao-de-dois] "rice and beans brazilian dish"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free The Rice And Beans Rice photo and picture
+     arquivo final: public\images\receitas\baiao-de-dois.webp
+
+OK   [receitas/arroz-com-pequi] "yellow rice brazilian dish"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Rice Dish Rice photo and picture
+     arquivo final: public\images\receitas\arroz-com-pequi.webp
+
+OK   [receitas/feijoada-carioca] "feijoada brazilian black bean stew"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Bean Stew Black Beans photo and picture
+     arquivo final: public\images\receitas\feijoada-carioca.webp
+
+OK   [receitas/pao-de-queijo] "pao de queijo"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Pão De Queijo Bowl photo and picture
+     arquivo final: public\images\receitas\pao-de-queijo.webp
+
+OK   [receitas/barreado] "beef stew ceramic pot slow cooked"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Roast Beef Slow Cooked photo and picture
+     arquivo final: public\images\receitas\barreado.webp
+
+OK   [receitas/espaguete-a-carbonara] "spaghetti carbonara"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Spaghetti Carbonara photo and picture
+     arquivo final: public\images\receitas\espaguete-a-carbonara.webp
+
+OK   [receitas/pizza-margherita] "margherita pizza baked slice"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Pizza Margherita photo and picture
+     arquivo final: public\images\receitas\pizza-margherita.webp
+
+OK   [receitas/coq-au-vin] "beef bourguignon stew"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Dish Beef Stew photo and picture
+     arquivo final: public\images\receitas\coq-au-vin.webp
+
+OK   [receitas/crepes-suzette] "crepe suzette dessert"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Crepe Suzette Dessert photo and picture
+     arquivo final: public\images\receitas\crepes-suzette.webp
+
+OK   [receitas/ramen-shoyu] "ramen bowl noodles egg closeup"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Ramen Noodles photo and picture
+     arquivo final: public\images\receitas\ramen-shoyu.webp
+
+OK   [receitas/tacos-al-pastor] "tacos al pastor"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Tacos Al Pastor photo and picture
+     arquivo final: public\images\receitas\tacos-al-pastor.webp
+
+OK   [receitas/paella-valenciana] "paella rice seafood pan spanish"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Spanish Paella Dish photo and picture
+     arquivo final: public\images\receitas\paella-valenciana.webp
+
+OK   [receitas/butter-chicken] "butter chicken curry"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Food Chicken Butter Masala photo and picture
+     arquivo final: public\images\receitas\butter-chicken.webp
+
+OK   [receitas/pad-thai] "pad thai noodles"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Pad Thai Noodles photo and picture
+     arquivo final: public\images\receitas\pad-thai.webp
+
+OK   [receitas/tagine-de-cordeiro] "lamb tagine moroccan"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Lamb Tagine photo and picture
+     arquivo final: public\images\receitas\tagine-de-cordeiro.webp
+
+OK   [receitas/ceviche-classico] "peruvian ceviche"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Ceviche Peruvian photo and picture
+     arquivo final: public\images\receitas\ceviche-classico.webp
+
+OK   [receitas/cheesecake-nova-york] "cheesecake slice dessert"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Cheesecake Dessert photo and picture
+     arquivo final: public\images\receitas\cheesecake-nova-york.webp
+
+OK   [regioes/norte] "rainforest jungle stream sunlight"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Rainforest Jungle photo and picture
+     arquivo final: public\images\regioes\norte.webp
+
+OK   [regioes/nordeste] "jericoacoara dunes beach coconut trees"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Dune Jericoacoara photo and picture
+     arquivo final: public\images\regioes\nordeste.webp
+
+OK   [regioes/centro-oeste] "cerrado savanna landscape trees"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Savanna Termite photo and picture
+     arquivo final: public\images\regioes\centro-oeste.webp
+
+OK   [regioes/sudeste] "rio de janeiro sao paulo skyline"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Rio Rio De Janeiro photo and picture
+     arquivo final: public\images\regioes\sudeste.webp
+
+OK   [regioes/sul] "pampas gaucho landscape brazil"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Herbs Of Pampa Plants Of Pampas White photo and picture
+     arquivo final: public\images\regioes\sul.webp
+
+OK   [institucional/hero-home] "cozy kitchen table food overhead"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Kitchen Home photo and picture
+     arquivo final: public\images\institucional\hero-home.webp
+
+OK   [institucional/sobre] "cook hands preparing food kitchen"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Woman Hands Cool Backgrounds photo and picture
+     arquivo final: public\images\institucional\sobre.webp
+
+OK   [institucional/ferramentas-bg] "kitchen utensils flat lay wood"
+     fonte: Pixabay (busca publica, sem API key)
+     descricao original (Pixabay): Free Wood Still Life photo and picture
+     arquivo final: public\images\institucional\ferramentas-bg.webp
+
+------------------------------------------------------------------------------
+Total: 28/28 imagens baixadas com sucesso.
+
+Observacoes de revisao manual:
+- tacaca: Pixabay nao tem foto real de tacaca (prato regional muito
+  especifico); usada uma foto generica de caldo/broth amarelado como
+  aproximacao visual.
+- acaraje: sem foto real de acaraje no banco; usada uma foto de fritter
+  frito redondo dourado como aproximacao visual.
+- coq-au-vin: Pixabay nao tem nenhuma foto real de coq au vin; usada uma
+  foto de ensopado de carne ao vinho (beef stew) como aproximacao —
+  visualmente proxima, mas e carne bovina, nao frango.
+- Todas as outras 25 imagens sao fotos reais e diretamente
+  representativas do prato/paisagem pedido.

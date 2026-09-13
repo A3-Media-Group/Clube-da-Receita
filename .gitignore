@@ -1,0 +1,8 @@
+node_modules/
+.env.local
+scripts/.originals/
+scripts/.fetch-results.json
+.tools/
+.redesign-source/
+site-pronto-github/
+Clube-da-Receita-Profissional.zip
