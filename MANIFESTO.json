@@ -1,0 +1,362 @@
+[
+  {
+    "file": ".nojekyll",
+    "bytes": 0
+  },
+  {
+    "file": "404.html",
+    "bytes": 4144
+  },
+  {
+    "file": "assets/catalogue.json",
+    "bytes": 17839
+  },
+  {
+    "file": "assets/favicon.svg",
+    "bytes": 200
+  },
+  {
+    "file": "assets/fonts/dm-sans-0.ttf",
+    "bytes": 48280
+  },
+  {
+    "file": "assets/fonts/dm-sans-1.ttf",
+    "bytes": 48308
+  },
+  {
+    "file": "assets/fonts/dm-sans-2.ttf",
+    "bytes": 48280
+  },
+  {
+    "file": "assets/fonts/dm-sans-3.ttf",
+    "bytes": 48200
+  },
+  {
+    "file": "assets/fonts/OFL.txt",
+    "bytes": 4482
+  },
+  {
+    "file": "assets/photos/CREDITS.md",
+    "bytes": 539
+  },
+  {
+    "file": "assets/photos/hero-small.webp",
+    "bytes": 136454
+  },
+  {
+    "file": "assets/photos/hero.webp",
+    "bytes": 539376
+  },
+  {
+    "file": "assets/photos/pasta-small.webp",
+    "bytes": 34572
+  },
+  {
+    "file": "assets/photos/pasta.webp",
+    "bytes": 117884
+  },
+  {
+    "file": "assets/photos/pizza-small.webp",
+    "bytes": 59136
+  },
+  {
+    "file": "assets/photos/pizza.webp",
+    "bytes": 229254
+  },
+  {
+    "file": "assets/photos/salad-small.webp",
+    "bytes": 51734
+  },
+  {
+    "file": "assets/photos/salad.webp",
+    "bytes": 179562
+  },
+  {
+    "file": "assets/photos/spices-small.webp",
+    "bytes": 75504
+  },
+  {
+    "file": "assets/photos/spices.webp",
+    "bytes": 299830
+  },
+  {
+    "file": "assets/photos/table-small.webp",
+    "bytes": 47706
+  },
+  {
+    "file": "assets/photos/table.webp",
+    "bytes": 245390
+  },
+  {
+    "file": "assets/recipe-Acaraje.js",
+    "bytes": 5601
+  },
+  {
+    "file": "assets/recipe-ArrozComPequi.js",
+    "bytes": 5008
+  },
+  {
+    "file": "assets/recipe-BaiaoDeDois.js",
+    "bytes": 5462
+  },
+  {
+    "file": "assets/recipe-Barreado.js",
+    "bytes": 5193
+  },
+  {
+    "file": "assets/recipe-ButterChicken.js",
+    "bytes": 4995
+  },
+  {
+    "file": "assets/recipe-Carbonara.js",
+    "bytes": 5156
+  },
+  {
+    "file": "assets/recipe-CevicheClassico.js",
+    "bytes": 4473
+  },
+  {
+    "file": "assets/recipe-CheesecakeNY.js",
+    "bytes": 5131
+  },
+  {
+    "file": "assets/recipe-CoqAuVin.js",
+    "bytes": 5018
+  },
+  {
+    "file": "assets/recipe-CrepesSuzette.js",
+    "bytes": 5324
+  },
+  {
+    "file": "assets/recipe-Feijoada.js",
+    "bytes": 7757
+  },
+  {
+    "file": "assets/recipe-PadThai.js",
+    "bytes": 4937
+  },
+  {
+    "file": "assets/recipe-PaellaValenciana.js",
+    "bytes": 5337
+  },
+  {
+    "file": "assets/recipe-PaoDeQueijo.js",
+    "bytes": 5272
+  },
+  {
+    "file": "assets/recipe-PatoNoTucupi.js",
+    "bytes": 5420
+  },
+  {
+    "file": "assets/recipe-PizzaMargherita.js",
+    "bytes": 4997
+  },
+  {
+    "file": "assets/recipe-RamenShoyu.js",
+    "bytes": 5249
+  },
+  {
+    "file": "assets/recipe-Tacaca.js",
+    "bytes": 5305
+  },
+  {
+    "file": "assets/recipe-TacosAlPastor.js",
+    "bytes": 4767
+  },
+  {
+    "file": "assets/recipe-TagineCordeiro.js",
+    "bytes": 4497
+  },
+  {
+    "file": "assets/site.css",
+    "bytes": 29325
+  },
+  {
+    "file": "assets/site.js",
+    "bytes": 10785
+  },
+  {
+    "file": "assets/tools-logic.js",
+    "bytes": 6651
+  },
+  {
+    "file": "Blog-DiferencaNorteNordeste.dc.html",
+    "bytes": 7226
+  },
+  {
+    "file": "Blog-GuiaTemperos.dc.html",
+    "bytes": 7100
+  },
+  {
+    "file": "Blog.dc.html",
+    "bytes": 6312
+  },
+  {
+    "file": "Busca-Geladeira.dc.html",
+    "bytes": 36744
+  },
+  {
+    "file": "Contato.dc.html",
+    "bytes": 5916
+  },
+  {
+    "file": "Favoritos.html",
+    "bytes": 36590
+  },
+  {
+    "file": "Ferramentas.dc.html",
+    "bytes": 12910
+  },
+  {
+    "file": "Home.dc.html",
+    "bytes": 18237
+  },
+  {
+    "file": "index.html",
+    "bytes": 18489
+  },
+  {
+    "file": "Politica-Privacidade.dc.html",
+    "bytes": 5899
+  },
+  {
+    "file": "README.md",
+    "bytes": 6095
+  },
+  {
+    "file": "Receita-Acaraje.dc.html",
+    "bytes": 21086
+  },
+  {
+    "file": "Receita-ArrozComPequi.dc.html",
+    "bytes": 20381
+  },
+  {
+    "file": "Receita-BaiaoDeDois.dc.html",
+    "bytes": 21006
+  },
+  {
+    "file": "Receita-Barreado.dc.html",
+    "bytes": 20769
+  },
+  {
+    "file": "Receita-ButterChicken.dc.html",
+    "bytes": 19939
+  },
+  {
+    "file": "Receita-Carbonara.dc.html",
+    "bytes": 20340
+  },
+  {
+    "file": "Receita-CevicheClassico.dc.html",
+    "bytes": 19342
+  },
+  {
+    "file": "Receita-CheesecakeNY.dc.html",
+    "bytes": 20543
+  },
+  {
+    "file": "Receita-CoqAuVin.dc.html",
+    "bytes": 20184
+  },
+  {
+    "file": "Receita-CrepesSuzette.dc.html",
+    "bytes": 20720
+  },
+  {
+    "file": "Receita-Feijoada.dc.html",
+    "bytes": 24417
+  },
+  {
+    "file": "Receita-PadThai.dc.html",
+    "bytes": 19910
+  },
+  {
+    "file": "Receita-PaellaValenciana.dc.html",
+    "bytes": 20555
+  },
+  {
+    "file": "Receita-PaoDeQueijo.dc.html",
+    "bytes": 20536
+  },
+  {
+    "file": "Receita-PatoNoTucupi.dc.html",
+    "bytes": 20751
+  },
+  {
+    "file": "Receita-PizzaMargherita.dc.html",
+    "bytes": 20384
+  },
+  {
+    "file": "Receita-RamenShoyu.dc.html",
+    "bytes": 20235
+  },
+  {
+    "file": "Receita-Tacaca.dc.html",
+    "bytes": 20456
+  },
+  {
+    "file": "Receita-TacosAlPastor.dc.html",
+    "bytes": 19752
+  },
+  {
+    "file": "Receita-TagineCordeiro.dc.html",
+    "bytes": 19504
+  },
+  {
+    "file": "Receitas-Internacional.dc.html",
+    "bytes": 24094
+  },
+  {
+    "file": "Receitas.html",
+    "bytes": 36556
+  },
+  {
+    "file": "Regiao-CentroOeste.dc.html",
+    "bytes": 7685
+  },
+  {
+    "file": "Regiao-Nordeste.dc.html",
+    "bytes": 9348
+  },
+  {
+    "file": "Regiao-Norte.dc.html",
+    "bytes": 9020
+  },
+  {
+    "file": "Regiao-Sudeste.dc.html",
+    "bytes": 9299
+  },
+  {
+    "file": "Regiao-Sul.dc.html",
+    "bytes": 7538
+  },
+  {
+    "file": "RELATORIO-DO-PROJETO.md",
+    "bytes": 4449
+  },
+  {
+    "file": "robots.txt",
+    "bytes": 95
+  },
+  {
+    "file": "scripts/configure-site.cjs",
+    "bytes": 2251
+  },
+  {
+    "file": "site-config.json",
+    "bytes": 109
+  },
+  {
+    "file": "sitemap.xml",
+    "bytes": 3668
+  },
+  {
+    "file": "Sobre.dc.html",
+    "bytes": 5762
+  },
+  {
+    "file": "Termos-Uso.dc.html",
+    "bytes": 6308
+  }
+]

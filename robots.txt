@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://a3-media-group.github.io/Clube-da-Receita/sitemap.xml

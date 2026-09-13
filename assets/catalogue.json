@@ -1,0 +1,830 @@
+[
+  {
+    "file": "Receita-Acaraje.dc.html",
+    "title": "Acarajé",
+    "tags": [
+      "NORDESTE · BAHIA",
+      "MÉDIO",
+      "SEM GLÚTEN"
+    ],
+    "desc": "Bolinho de feijão-fradinho frito no azeite de dendê, aberto e recheado com vatapá, camarão seco e vinagrete — símbolo da culinária baiana de candomblé.",
+    "ingredients": [
+      {
+        "name": "Feijão fradinho",
+        "base": 500,
+        "kind": "g",
+        "key": "feijao"
+      },
+      {
+        "name": "Cebola picada",
+        "base": 1,
+        "kind": "unit"
+      },
+      {
+        "name": "Azeite de dendê (fritura)",
+        "base": 500,
+        "kind": "g",
+        "key": "dende"
+      },
+      {
+        "name": "Camarão seco",
+        "base": 100,
+        "kind": "g",
+        "key": "camarao"
+      },
+      {
+        "name": "Vatapá para recheio",
+        "base": 300,
+        "kind": "g"
+      }
+    ]
+  },
+  {
+    "file": "Receita-ArrozComPequi.dc.html",
+    "title": "Arroz com pequi",
+    "tags": [
+      "CENTRO-OESTE · GOIÁS",
+      "MÉDIO",
+      "SEM GLÚTEN"
+    ],
+    "desc": "Arroz refogado com a polpa do pequi e frango desfiado — atenção: nunca morda o caroço, os espinhos internos são perigosos, só chupe a polpa ao redor.",
+    "ingredients": [
+      {
+        "name": "Arroz",
+        "base": 400,
+        "kind": "g"
+      },
+      {
+        "name": "Pequi",
+        "base": 6,
+        "kind": "unit",
+        "key": "pequi"
+      },
+      {
+        "name": "Frango desfiado",
+        "base": 300,
+        "kind": "g",
+        "key": "frango"
+      },
+      {
+        "name": "Cebola picada",
+        "base": 1,
+        "kind": "unit"
+      },
+      {
+        "name": "Dentes de alho",
+        "base": 3,
+        "kind": "unit"
+      }
+    ]
+  },
+  {
+    "file": "Receita-BaiaoDeDois.dc.html",
+    "title": "Baião de dois",
+    "tags": [
+      "NORDESTE · SERTÃO",
+      "FÁCIL",
+      "SEM GLÚTEN"
+    ],
+    "desc": "Arroz e feijão-de-corda cozidos juntos, finalizados com queijo coalho e carne-de-sol desfiada — prato símbolo da cozinha sertaneja.",
+    "ingredients": [
+      {
+        "name": "Arroz",
+        "base": 300,
+        "kind": "g"
+      },
+      {
+        "name": "Feijão-de-corda",
+        "base": 300,
+        "kind": "g",
+        "key": "feijao"
+      },
+      {
+        "name": "Queijo coalho em cubos",
+        "base": 200,
+        "kind": "g",
+        "key": "queijo"
+      },
+      {
+        "name": "Carne-de-sol desfiada",
+        "base": 250,
+        "kind": "g",
+        "key": "carne"
+      },
+      {
+        "name": "Cebola picada",
+        "base": 1,
+        "kind": "unit"
+      },
+      {
+        "name": "Dentes de alho",
+        "base": 3,
+        "kind": "unit"
+      }
+    ]
+  },
+  {
+    "file": "Receita-Barreado.dc.html",
+    "title": "Barreado",
+    "tags": [
+      "SUL · PARANÁ",
+      "DIFÍCIL",
+      "SEM GLÚTEN"
+    ],
+    "desc": "Carne cozida por horas numa panela de barro selada com massa de farinha — receita caiçara tradicional do litoral paranaense.",
+    "ingredients": [
+      {
+        "name": "Carne bovina em cubos (paleta)",
+        "base": 1200,
+        "kind": "g",
+        "key": "carne"
+      },
+      {
+        "name": "Bacon em cubos",
+        "base": 150,
+        "kind": "g"
+      },
+      {
+        "name": "Cebolas picadas",
+        "base": 2,
+        "kind": "unit"
+      },
+      {
+        "name": "Dentes de alho",
+        "base": 4,
+        "kind": "unit"
+      },
+      {
+        "name": "Folhas de louro",
+        "base": 3,
+        "kind": "unit"
+      },
+      {
+        "name": "Farinha de mandioca (para servir)",
+        "base": 300,
+        "kind": "g"
+      },
+      {
+        "name": "Bananas (para servir)",
+        "base": 6,
+        "kind": "unit"
+      }
+    ]
+  },
+  {
+    "file": "Receita-ButterChicken.dc.html",
+    "title": "Butter chicken",
+    "tags": [
+      "ÍNDIA",
+      "MÉDIO"
+    ],
+    "desc": "Frango marinado em iogurte e especiarias, grelhado e finalizado num molho cremoso de tomate e manteiga.",
+    "ingredients": [
+      {
+        "name": "Peito de frango em cubos",
+        "base": 700,
+        "kind": "g",
+        "key": "frango"
+      },
+      {
+        "name": "Iogurte natural",
+        "base": 200,
+        "kind": "g"
+      },
+      {
+        "name": "Manteiga",
+        "base": 60,
+        "kind": "g",
+        "key": "manteiga"
+      },
+      {
+        "name": "Creme de leite",
+        "base": 200,
+        "kind": "ml"
+      },
+      {
+        "name": "Polpa de tomate",
+        "base": 400,
+        "kind": "g"
+      }
+    ]
+  },
+  {
+    "file": "Receita-Carbonara.dc.html",
+    "title": "Espaguete à carbonara",
+    "tags": [
+      "ITÁLIA",
+      "FÁCIL"
+    ],
+    "desc": "O clássico romano: massa, ovos, guanciale e pecorino — sem creme de leite, com a cremosidade vindo só do ovo e da água da massa.",
+    "ingredients": [
+      {
+        "name": "Espaguete",
+        "base": 500,
+        "kind": "g"
+      },
+      {
+        "name": "Ovos",
+        "base": 4,
+        "kind": "unit"
+      },
+      {
+        "name": "Guanciale ou bacon",
+        "base": 150,
+        "kind": "g",
+        "key": "guanciale"
+      },
+      {
+        "name": "Queijo pecorino ralado",
+        "base": 100,
+        "kind": "g",
+        "key": "pecorino"
+      }
+    ]
+  },
+  {
+    "file": "Receita-CevicheClassico.dc.html",
+    "title": "Ceviche clássico",
+    "tags": [
+      "PERU",
+      "FÁCIL"
+    ],
+    "desc": "Peixe branco fresco curado no suco de limão, com cebola roxa e pimenta — prato símbolo da culinária peruana.",
+    "ingredients": [
+      {
+        "name": "Peixe branco fresco",
+        "base": 600,
+        "kind": "g",
+        "key": "peixe"
+      },
+      {
+        "name": "Suco de limão",
+        "base": 300,
+        "kind": "ml"
+      },
+      {
+        "name": "Cebola roxa",
+        "base": 1,
+        "kind": "unit"
+      },
+      {
+        "name": "Pimenta e coentro",
+        "base": 1,
+        "kind": "unit"
+      }
+    ]
+  },
+  {
+    "file": "Receita-CheesecakeNY.dc.html",
+    "title": "Cheesecake de Nova York",
+    "tags": [
+      "ESTADOS UNIDOS",
+      "MÉDIO"
+    ],
+    "desc": "Base de biscoito e recheio cremoso de cream cheese, assado em banho-maria e gelado por algumas horas antes de servir.",
+    "ingredients": [
+      {
+        "name": "Biscoito tipo maisena",
+        "base": 200,
+        "kind": "g"
+      },
+      {
+        "name": "Manteiga derretida",
+        "base": 80,
+        "kind": "g"
+      },
+      {
+        "name": "Cream cheese",
+        "base": 600,
+        "kind": "g",
+        "key": "creamcheese"
+      },
+      {
+        "name": "Açúcar",
+        "base": 180,
+        "kind": "g"
+      },
+      {
+        "name": "Ovos",
+        "base": 3,
+        "kind": "unit"
+      },
+      {
+        "name": "Creme de leite fresco",
+        "base": 150,
+        "kind": "ml"
+      }
+    ]
+  },
+  {
+    "file": "Receita-CoqAuVin.dc.html",
+    "title": "Coq au vin",
+    "tags": [
+      "FRANÇA",
+      "MÉDIO"
+    ],
+    "desc": "Frango cozido lentamente no vinho tinto com bacon, cebolas pequenas e cogumelos — um clássico da cozinha rural francesa.",
+    "ingredients": [
+      {
+        "name": "Frango em pedaços",
+        "base": 1200,
+        "kind": "g",
+        "key": "frango"
+      },
+      {
+        "name": "Vinho tinto",
+        "base": 500,
+        "kind": "ml",
+        "key": "vinho"
+      },
+      {
+        "name": "Bacon",
+        "base": 100,
+        "kind": "g"
+      },
+      {
+        "name": "Cebolas pequenas",
+        "base": 200,
+        "kind": "g"
+      },
+      {
+        "name": "Cogumelos",
+        "base": 200,
+        "kind": "g"
+      }
+    ]
+  },
+  {
+    "file": "Receita-CrepesSuzette.dc.html",
+    "title": "Crêpes Suzette",
+    "tags": [
+      "FRANÇA",
+      "MÉDIO"
+    ],
+    "desc": "Crêpes finos dobrados numa calda de manteiga e laranja, flambados com licor — clássico de sobremesa francesa.",
+    "ingredients": [
+      {
+        "name": "Farinha de trigo",
+        "base": 250,
+        "kind": "g"
+      },
+      {
+        "name": "Leite",
+        "base": 500,
+        "kind": "ml"
+      },
+      {
+        "name": "Ovos",
+        "base": 3,
+        "kind": "unit"
+      },
+      {
+        "name": "Manteiga",
+        "base": 50,
+        "kind": "g",
+        "key": "manteiga"
+      },
+      {
+        "name": "Açúcar",
+        "base": 80,
+        "kind": "g"
+      },
+      {
+        "name": "Suco de laranja",
+        "base": 200,
+        "kind": "ml"
+      },
+      {
+        "name": "Licor de laranja",
+        "base": 50,
+        "kind": "ml",
+        "key": "licor"
+      }
+    ]
+  },
+  {
+    "file": "Receita-Feijoada.dc.html",
+    "title": "Feijoada carioca",
+    "tags": [
+      "SUDESTE · RIO DE JANEIRO",
+      "DIFÍCIL",
+      "SEM GLÚTEN"
+    ],
+    "desc": "O clássico prato de domingo do Rio de Janeiro: feijão preto cozido lentamente com carnes salgadas e defumadas, servido com arroz, couve refogada, farofa e laranja.",
+    "ingredients": [
+      {
+        "name": "Feijão preto",
+        "base": 500,
+        "kind": "g",
+        "key": "feijao"
+      },
+      {
+        "name": "Carne seca (charque)",
+        "base": 300,
+        "kind": "g",
+        "key": "carneSeca"
+      },
+      {
+        "name": "Costela de porco salgada",
+        "base": 250,
+        "kind": "g",
+        "key": "costela"
+      },
+      {
+        "name": "Linguiça calabresa",
+        "base": 200,
+        "kind": "g",
+        "key": "linguica"
+      },
+      {
+        "name": "Bacon em cubos",
+        "base": 150,
+        "kind": "g"
+      },
+      {
+        "name": "Cebola picada",
+        "base": 1,
+        "kind": "unit"
+      },
+      {
+        "name": "Dentes de alho",
+        "base": 4,
+        "kind": "unit"
+      },
+      {
+        "name": "Folhas de louro",
+        "base": 2,
+        "kind": "unit"
+      },
+      {
+        "name": "Azeite",
+        "base": 2,
+        "kind": "tbsp"
+      },
+      {
+        "name": "Arroz branco cozido (para servir)",
+        "base": 600,
+        "kind": "g"
+      },
+      {
+        "name": "Couve refogada (para servir)",
+        "base": 300,
+        "kind": "g"
+      },
+      {
+        "name": "Laranja em rodelas (para servir)",
+        "base": 1,
+        "kind": "unit"
+      }
+    ]
+  },
+  {
+    "file": "Receita-PadThai.dc.html",
+    "title": "Pad thai",
+    "tags": [
+      "TAILÂNDIA",
+      "FÁCIL"
+    ],
+    "desc": "Macarrão de arroz salteado na wok com camarão, ovo, broto de feijão e amendoim — equilíbrio de doce, salgado e ácido.",
+    "ingredients": [
+      {
+        "name": "Macarrão de arroz",
+        "base": 300,
+        "kind": "g",
+        "key": "macarrao"
+      },
+      {
+        "name": "Camarão ou frango",
+        "base": 300,
+        "kind": "g",
+        "key": "camarao"
+      },
+      {
+        "name": "Ovos",
+        "base": 2,
+        "kind": "unit"
+      },
+      {
+        "name": "Broto de feijão",
+        "base": 100,
+        "kind": "g"
+      },
+      {
+        "name": "Amendoim torrado",
+        "base": 50,
+        "kind": "g"
+      }
+    ]
+  },
+  {
+    "file": "Receita-PaellaValenciana.dc.html",
+    "title": "Paella valenciana",
+    "tags": [
+      "ESPANHA",
+      "MÉDIO"
+    ],
+    "desc": "Arroz cozido com frango, feijão-verde e açafrão, finalizado com a crosta dourada no fundo da panela — o socarrat.",
+    "ingredients": [
+      {
+        "name": "Arroz bomba ou arbóreo",
+        "base": 400,
+        "kind": "g"
+      },
+      {
+        "name": "Frango em pedaços",
+        "base": 500,
+        "kind": "g",
+        "key": "frango"
+      },
+      {
+        "name": "Feijão-verde",
+        "base": 150,
+        "kind": "g"
+      },
+      {
+        "name": "Tomates",
+        "base": 2,
+        "kind": "unit"
+      },
+      {
+        "name": "Açafrão",
+        "base": 1,
+        "kind": "g",
+        "key": "acafrao"
+      },
+      {
+        "name": "Caldo de frango",
+        "base": 1000,
+        "kind": "ml"
+      }
+    ]
+  },
+  {
+    "file": "Receita-PaoDeQueijo.dc.html",
+    "title": "Pão de queijo",
+    "tags": [
+      "SUDESTE · MINAS GERAIS",
+      "FÁCIL",
+      "SEM GLÚTEN"
+    ],
+    "desc": "O clássico lanche mineiro: crocante por fora, elástico por dentro, feito com polvilho azedo e queijo minas curado.",
+    "ingredients": [
+      {
+        "name": "Polvilho azedo",
+        "base": 500,
+        "kind": "g",
+        "key": "polvilho"
+      },
+      {
+        "name": "Leite",
+        "base": 250,
+        "kind": "g"
+      },
+      {
+        "name": "Óleo",
+        "base": 120,
+        "kind": "g"
+      },
+      {
+        "name": "Ovos",
+        "base": 2,
+        "kind": "unit"
+      },
+      {
+        "name": "Queijo minas curado ralado",
+        "base": 200,
+        "kind": "g",
+        "key": "queijo"
+      },
+      {
+        "name": "Sal",
+        "base": 1,
+        "kind": "tbsp"
+      }
+    ]
+  },
+  {
+    "file": "Receita-PatoNoTucupi.dc.html",
+    "title": "Pato no tucupi",
+    "tags": [
+      "NORTE · PARÁ",
+      "DIFÍCIL",
+      "SEM GLÚTEN"
+    ],
+    "desc": "Pato cozido lentamente no caldo de tucupi com jambu — prato central das festas de Círio em Belém.",
+    "ingredients": [
+      {
+        "name": "Pato inteiro (~2kg)",
+        "base": 1,
+        "kind": "unit",
+        "key": "pato"
+      },
+      {
+        "name": "Tucupi",
+        "base": 1500,
+        "kind": "ml",
+        "key": "tucupi"
+      },
+      {
+        "name": "Dentes de alho",
+        "base": 4,
+        "kind": "unit"
+      },
+      {
+        "name": "Cebola",
+        "base": 1,
+        "kind": "unit"
+      },
+      {
+        "name": "Folhas de jambu",
+        "base": 2,
+        "kind": "unit"
+      },
+      {
+        "name": "Folhas de louro",
+        "base": 2,
+        "kind": "unit"
+      }
+    ]
+  },
+  {
+    "file": "Receita-PizzaMargherita.dc.html",
+    "title": "Pizza Margherita",
+    "tags": [
+      "ITÁLIA",
+      "MÉDIO"
+    ],
+    "desc": "Massa fina, molho de tomate, mussarela e manjericão fresco — a combinação que batizou a pizza mais famosa da Itália.",
+    "ingredients": [
+      {
+        "name": "Farinha de trigo",
+        "base": 500,
+        "kind": "g",
+        "key": "farinha"
+      },
+      {
+        "name": "Água",
+        "base": 300,
+        "kind": "g"
+      },
+      {
+        "name": "Fermento biológico",
+        "base": 7,
+        "kind": "g"
+      },
+      {
+        "name": "Molho de tomate",
+        "base": 300,
+        "kind": "g"
+      },
+      {
+        "name": "Mussarela",
+        "base": 300,
+        "kind": "g",
+        "key": "mussarela"
+      }
+    ]
+  },
+  {
+    "file": "Receita-RamenShoyu.dc.html",
+    "title": "Ramen shoyu",
+    "tags": [
+      "JAPÃO",
+      "DIFÍCIL"
+    ],
+    "desc": "Caldo apurado temperado com shoyu, macarrão fresco, chashu e ovo cozido — a versão mais clássica do ramen japonês.",
+    "ingredients": [
+      {
+        "name": "Caldo de porco ou frango",
+        "base": 1500,
+        "kind": "ml"
+      },
+      {
+        "name": "Molho shoyu",
+        "base": 100,
+        "kind": "ml"
+      },
+      {
+        "name": "Macarrão de ramen fresco",
+        "base": 6,
+        "kind": "unit",
+        "key": "macarrao"
+      },
+      {
+        "name": "Chashu (lombo de porco)",
+        "base": 300,
+        "kind": "g",
+        "key": "chashu"
+      },
+      {
+        "name": "Ovos cozidos",
+        "base": 6,
+        "kind": "unit"
+      }
+    ]
+  },
+  {
+    "file": "Receita-Tacaca.dc.html",
+    "title": "Tacacá",
+    "tags": [
+      "NORTE · PARÁ",
+      "MÉDIO",
+      "SEM GLÚTEN"
+    ],
+    "desc": "Caldo de tucupi engrossado com goma de tapioca, servido bem quente em cuia com jambu e camarão seco — clássico das ruas de Belém.",
+    "ingredients": [
+      {
+        "name": "Tucupi",
+        "base": 1500,
+        "kind": "ml",
+        "key": "tucupi"
+      },
+      {
+        "name": "Goma de tapioca",
+        "base": 200,
+        "kind": "g"
+      },
+      {
+        "name": "Camarão seco",
+        "base": 150,
+        "kind": "g",
+        "key": "camarao"
+      },
+      {
+        "name": "Folhas de jambu",
+        "base": 2,
+        "kind": "unit"
+      },
+      {
+        "name": "Dentes de alho",
+        "base": 3,
+        "kind": "unit"
+      }
+    ]
+  },
+  {
+    "file": "Receita-TacosAlPastor.dc.html",
+    "title": "Tacos al pastor",
+    "tags": [
+      "MÉXICO",
+      "MÉDIO"
+    ],
+    "desc": "Carne de porco marinada em pimentas e achiote, grelhada e servida em tortillas de milho com abacaxi — clássico de rua da Cidade do México.",
+    "ingredients": [
+      {
+        "name": "Carne de porco em tiras",
+        "base": 800,
+        "kind": "g",
+        "key": "carne"
+      },
+      {
+        "name": "Abacaxi em cubos",
+        "base": 200,
+        "kind": "g"
+      },
+      {
+        "name": "Cebola",
+        "base": 1,
+        "kind": "unit"
+      },
+      {
+        "name": "Tortillas de milho",
+        "base": 12,
+        "kind": "unit",
+        "key": "tortilla"
+      }
+    ]
+  },
+  {
+    "file": "Receita-TagineCordeiro.dc.html",
+    "title": "Tagine de cordeiro",
+    "tags": [
+      "MARROCOS",
+      "MÉDIO"
+    ],
+    "desc": "Cordeiro cozido lentamente com especiarias, damasco seco e grão-de-bico — cozinhado na tradicional panela de barro marroquina.",
+    "ingredients": [
+      {
+        "name": "Cordeiro em cubos",
+        "base": 1000,
+        "kind": "g",
+        "key": "cordeiro"
+      },
+      {
+        "name": "Cebolas",
+        "base": 2,
+        "kind": "unit"
+      },
+      {
+        "name": "Damasco seco",
+        "base": 100,
+        "kind": "g"
+      },
+      {
+        "name": "Grão-de-bico cozido",
+        "base": 200,
+        "kind": "g"
+      }
+    ]
+  }
+]
