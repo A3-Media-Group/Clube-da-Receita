@@ -2,6 +2,18 @@
 
 Redesign editorial com 40 páginas, incluindo 20 receitas, cinco regiões brasileiras, receitas internacionais, blog, ferramentas, busca por ingredientes, favoritos e páginas institucionais. HTML, CSS e JavaScript puro. Não exige instalação, compilação, React nem servidor de aplicação. Fontes e fotografias são locais.
 
+## Publicação automática na Hostinger
+
+O domínio `clubedareceita.com.br` é servido pela Hostinger, não pelo GitHub Pages. O workflow `.github/workflows/deploy-hostinger.yml` envia o site por FTP a cada atualização da branch `main` (e pode ser executado manualmente em Actions → “Publicar na Hostinger” → Run workflow).
+
+Configuração única, em GitHub → Settings → Secrets and variables → Actions:
+
+1. Na Hostinger: hPanel → Arquivos → **Contas FTP**. Anote o servidor (IP ou `ftp.clubedareceita.com.br`), o usuário e defina/copie a senha.
+2. Crie os secrets `FTP_SERVER`, `FTP_USERNAME` e `FTP_PASSWORD`.
+3. Se a pasta do site no FTP não for `public_html/`, crie a variável `FTP_SERVER_DIR` (aba Variables) com o caminho correto, terminando em `/`.
+
+O envio ignora `scripts/`, arquivos `.md`, `package*.json` e a pasta `.github`.
+
 ## Publicar no GitHub Pages
 
 1. Extraia `Clube-da-Receita-Profissional.zip`.
