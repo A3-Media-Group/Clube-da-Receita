@@ -38,6 +38,30 @@ function toast(s) {
   clearTimeout(window.toastTimer);
   window.toastTimer = setTimeout(() => t.remove(), 3500);
 }
+window.clubeToast = toast;
+// Lista de compras compartilhada entre receitas e ferramentas.
+window.ClubeShopping = {
+  get() {
+    const raw = storage.get("clube-shopping", []);
+    return (Array.isArray(raw) ? raw : [])
+      .map((i) => (typeof i === "string" ? { t: i, d: false } : i))
+      .filter((i) => i && typeof i.t === "string");
+  },
+  set(items) {
+    return storage.set("clube-shopping", items);
+  },
+  add(texts) {
+    const items = this.get();
+    const have = new Set(items.map((i) => normalize(i.t)));
+    texts.forEach((t) => {
+      if (t && !have.has(normalize(t))) {
+        items.push({ t: String(t).slice(0, 200), d: false });
+        have.add(normalize(t));
+      }
+    });
+    return this.set(items);
+  },
+};
 function syncSaved() {
   $$("[data-save]").forEach((b) => {
     const yes = saved.includes(b.dataset.save);
@@ -90,6 +114,7 @@ function filter() {
   if (!catalog) return;
   const query = normalize($("#catalogue-search").value),
     difficulty = $("#difficulty").value,
+    category = $("#category")?.value || "",
     mode = catalog.dataset.mode;
   const terms =
     mode === "fridge"
@@ -103,6 +128,7 @@ function filter() {
     const match =
       terms.every((t) => normalize(c.dataset.search).includes(t)) &&
       (!difficulty || c.dataset.difficulty === difficulty) &&
+      (!category || (c.dataset.category || "").split("|").includes(category)) &&
       (mode !== "saved" || saved.includes(c.dataset.recipe));
     c.hidden = !match;
     if (match) count++;
@@ -119,6 +145,9 @@ if ($("#catalogue-search")) {
     new URLSearchParams(location.search).get("q") || "";
   $("#catalogue-search").addEventListener("input", filter);
   $("#difficulty").addEventListener("change", filter);
+  $("#category")?.addEventListener("change", filter);
+  const cat = new URLSearchParams(location.search).get("categoria");
+  if (cat && $("#category")) $("#category").value = cat;
   filter();
 }
 $$("[data-print]").forEach((b) =>
@@ -133,8 +162,12 @@ window.addEventListener("DOMContentLoaded", () => {
       const v = model.renderVals();
       $("#servings-count").textContent = model.state.servings;
       $$("[data-quantity]").forEach((n) => {
-        const i = data.ingredients[Number(n.dataset.quantity)],
-          qty = (i.base * model.state.servings) / base,
+        const i = data.ingredients[Number(n.dataset.quantity)];
+        if (i.base == null) {
+          n.textContent = i.kind;
+          return;
+        }
+        const qty = (i.base * model.state.servings) / base,
           unit =
             {
               g: "g",
@@ -145,8 +178,9 @@ window.addEventListener("DOMContentLoaded", () => {
             }[i.kind] || i.kind;
         n.textContent = `${new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 2 }).format(qty)} ${unit}`;
       });
-      $("#total-cost").textContent = v.totalCostDisplay;
-      $("#portion-cost").textContent = v.perServingCostDisplay;
+      if ($("#total-cost")) $("#total-cost").textContent = v.totalCostDisplay;
+      if ($("#portion-cost"))
+        $("#portion-cost").textContent = v.perServingCostDisplay;
       $("#servings-minus").disabled = model.state.servings <= 1;
       $("#servings-plus").disabled = model.state.servings >= 24;
     }
@@ -168,6 +202,20 @@ window.addEventListener("DOMContentLoaded", () => {
       }),
     );
     update();
+    $("#add-to-list")?.addEventListener("click", () => {
+      const title = $("h1")?.textContent.trim() || "receita";
+      const items = $$(".ingredients li").map((li) => {
+        const name = li.querySelector("span")?.textContent.trim() || "";
+        const qty = li.querySelector("strong")?.textContent.trim() || "";
+        return `${qty} ${name}`.trim() + ` (${title})`;
+      });
+      const ok = window.ClubeShopping.add(items);
+      toast(
+        ok
+          ? "Ingredientes enviados para a sua lista de compras."
+          : "O navegador bloqueou o armazenamento da lista.",
+      );
+    });
     let step = 0;
     const d = $("#cook-dialog");
     function cook() {
@@ -300,6 +348,22 @@ window.addEventListener("DOMContentLoaded", () => {
     window.updateTools();
   }
 });
+(() => {
+  const box = $("#tip-of-day");
+  if (!box || !window.CLUBE_TIPS) return;
+  const tips = window.CLUBE_TIPS;
+  const day = Math.floor(Date.now() / 86400000);
+  let i = day % tips.length;
+  const show = () => {
+    box.querySelector("[data-tip-cat]").textContent = tips[i][0];
+    box.querySelector("[data-tip-text]").textContent = tips[i][1];
+  };
+  box.querySelector("[data-tip-next]")?.addEventListener("click", () => {
+    i = (i + 1) % tips.length;
+    show();
+  });
+  show();
+})();
 $("#contact-form")?.addEventListener("submit", (e) => {
   e.preventDefault();
   const f = new FormData(e.currentTarget);

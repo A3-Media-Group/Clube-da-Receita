@@ -24,6 +24,17 @@ Para domínio próprio, use o endereço final, por exemplo `https://clubedarecei
 
 `site-config.json` registra a configuração; alterá-lo sozinho não atualiza as páginas. Não publique a mesma cópia em dois endereços sem escolher qual será o canonical.
 
+## Atualização de outubro de 2026 — conteúdo ampliado
+
+- **30 receitas** (10 novas entre as mais buscadas: bolo de cenoura, brigadeiro, pudim, bolo de milho, batata frita na air fryer, estrogonofe, pão caseiro, lasanha, coxinha e bolo de chocolate). Todas com foto no catálogo, dicas, conservação, perguntas frequentes, botão “+ Lista de compras” e dados estruturados com imagem.
+- **12 guias no Caderno** (10 novos: air fryer, validade na geladeira, congelamento, churrasco, arroz e feijão, substituições, medidas caseiras, marmitas, ovo cozido e frutas da estação), cada um com foto única.
+- **13 ferramentas** com página própria: conversor de medidas, calculadora de churrasco, calculadora de festa, substituições, forno ↔ air fryer, timer, tempo de cozimento, validade dos alimentos, lista de compras, ajuste de porções, ponto da carne, sorteador de receitas e cardápio semanal (`assets/tools.js`).
+- Páginas novas: dicas de cozinha (com “dica do dia” na home), ideias de cardápio, receitas mais buscadas e créditos das imagens.
+- Fotos que não correspondiam ao prato (acarajé, baião de dois, barreado, feijoada, pato no tucupi, pizza margherita, tacacá, tagine e carbonara) foram trocadas por fotos reais do Wikimedia Commons, exibidas a partir do próprio Commons com autoria e licença. Se uma foto externa não carregar, o cartão volta para a capa tipográfica.
+- Endereço canônico: `https://clubedareceita.com.br/` (canonical, Open Graph, sitemap com `lastmod` e robots).
+
+Para editar esse conteúdo, altere os arquivos em `scripts/content/` e execute `node scripts/enrich-site.cjs` (idempotente). Não use mais `scripts/configure-site.cjs` sem revisar: o gerador já define canonical e imagens por página.
+
 ## Arquivos principais
 
 - `index.html`: página inicial.
