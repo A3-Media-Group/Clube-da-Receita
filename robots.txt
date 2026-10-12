@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /scripts/
+
+Sitemap: https://clubedareceita.com.br/sitemap.xml

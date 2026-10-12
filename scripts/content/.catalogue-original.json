@@ -1,0 +1,222 @@
+[
+ {
+  "file": "Receita-Acaraje.dc.html",
+  "title": "Acarajé",
+  "short": "Acarajé",
+  "region": "NORDESTE · BAHIA",
+  "desc": "Bolinho de feijão-fradinho frito no azeite de dendê, aberto e recheado com vatapá, camarão seco e vinagrete — símbolo da culinária baiana de candomblé.",
+  "difficulty": "MÉDIO",
+  "search": "Acarajé NORDESTE · BAHIA MÉDIO SEM GLÚTEN Brasileira Feijão fradinho Cebola picada Azeite de dendê (fritura) Camarão seco Vatapá para recheio",
+  "minutes": 90,
+  "timeLabel": "1h 30 min"
+ },
+ {
+  "file": "Receita-ArrozComPequi.dc.html",
+  "title": "Arroz com pequi",
+  "short": "Arroz com pequi",
+  "region": "CENTRO-OESTE · GOIÁS",
+  "desc": "Arroz refogado com a polpa do pequi e frango desfiado — atenção: nunca morda o caroço, os espinhos internos são perigosos, só chupe a polpa ao redor.",
+  "difficulty": "MÉDIO",
+  "search": "Arroz com pequi CENTRO-OESTE · GOIÁS MÉDIO SEM GLÚTEN Brasileira Arroz Pequi Frango desfiado Cebola picada Dentes de alho",
+  "minutes": 50,
+  "timeLabel": "50 min"
+ },
+ {
+  "file": "Receita-BaiaoDeDois.dc.html",
+  "title": "Baião de dois",
+  "short": "Baião de dois",
+  "region": "NORDESTE · SERTÃO",
+  "desc": "Arroz e feijão-de-corda cozidos juntos, finalizados com queijo coalho e carne-de-sol desfiada — prato símbolo da cozinha sertaneja.",
+  "difficulty": "FÁCIL",
+  "search": "Baião de dois NORDESTE · SERTÃO FÁCIL SEM GLÚTEN Brasileira Arroz Feijão-de-corda Queijo coalho em cubos Carne-de-sol desfiada Cebola picada Dentes de alho",
+  "minutes": 60,
+  "timeLabel": "1h"
+ },
+ {
+  "file": "Receita-Barreado.dc.html",
+  "title": "Barreado",
+  "short": "Barreado",
+  "region": "SUL · PARANÁ",
+  "desc": "Carne cozida por horas numa panela de barro selada com massa de farinha — receita caiçara tradicional do litoral paranaense.",
+  "difficulty": "DIFÍCIL",
+  "search": "Barreado SUL · PARANÁ DIFÍCIL SEM GLÚTEN Brasileira Carne bovina em cubos (paleta) Bacon em cubos Cebolas picadas Dentes de alho Folhas de louro Farinha de mandioca (para servir) Bananas (para servir)",
+  "minutes": 480,
+  "timeLabel": "8h"
+ },
+ {
+  "file": "Receita-ButterChicken.dc.html",
+  "title": "Butter chicken",
+  "short": "Butter chicken",
+  "region": "ÍNDIA",
+  "desc": "Frango marinado em iogurte e especiarias, grelhado e finalizado num molho cremoso de tomate e manteiga.",
+  "difficulty": "MÉDIO",
+  "search": "Butter chicken ÍNDIA MÉDIO Indiana Peito de frango em cubos Iogurte natural Manteiga Creme de leite Polpa de tomate",
+  "minutes": 105,
+  "timeLabel": "1h 45 min"
+ },
+ {
+  "file": "Receita-Carbonara.dc.html",
+  "title": "Espaguete à carbonara",
+  "short": "Espaguete à carbonara",
+  "region": "ITÁLIA",
+  "desc": "O clássico romano: massa, ovos, guanciale e pecorino — sem creme de leite, com a cremosidade vindo só do ovo e da água da massa.",
+  "difficulty": "FÁCIL",
+  "search": "Espaguete à carbonara ITÁLIA FÁCIL Italiana Espaguete Ovos Guanciale ou bacon Queijo pecorino ralado",
+  "minutes": 25,
+  "timeLabel": "25 min"
+ },
+ {
+  "file": "Receita-CevicheClassico.dc.html",
+  "title": "Ceviche clássico",
+  "short": "Ceviche clássico",
+  "region": "PERU",
+  "desc": "Peixe branco fresco curado no suco de limão, com cebola roxa e pimenta — prato símbolo da culinária peruana.",
+  "difficulty": "FÁCIL",
+  "search": "Ceviche clássico PERU FÁCIL Peruana Peixe branco fresco Suco de limão Cebola roxa Pimenta e coentro",
+  "minutes": 30,
+  "timeLabel": "30 min"
+ },
+ {
+  "file": "Receita-CheesecakeNY.dc.html",
+  "title": "Cheesecake de Nova York",
+  "short": "Cheesecake de Nova York",
+  "region": "ESTADOS UNIDOS",
+  "desc": "Base de biscoito e recheio cremoso de cream cheese, assado em banho-maria e gelado por algumas horas antes de servir.",
+  "difficulty": "MÉDIO",
+  "search": "Cheesecake de Nova York ESTADOS UNIDOS MÉDIO Americana Biscoito tipo maisena Manteiga derretida Cream cheese Açúcar Ovos Creme de leite fresco",
+  "minutes": 300,
+  "timeLabel": "5h"
+ },
+ {
+  "file": "Receita-CoqAuVin.dc.html",
+  "title": "Coq au vin",
+  "short": "Coq au vin",
+  "region": "FRANÇA",
+  "desc": "Frango cozido lentamente no vinho tinto com bacon, cebolas pequenas e cogumelos — um clássico da cozinha rural francesa.",
+  "difficulty": "MÉDIO",
+  "search": "Coq au vin FRANÇA MÉDIO Francesa Frango em pedaços Vinho tinto Bacon Cebolas pequenas Cogumelos",
+  "minutes": 120,
+  "timeLabel": "2h"
+ },
+ {
+  "file": "Receita-CrepesSuzette.dc.html",
+  "title": "Crêpes Suzette",
+  "short": "Crêpes Suzette",
+  "region": "FRANÇA",
+  "desc": "Crêpes finos dobrados numa calda de manteiga e laranja, flambados com licor — clássico de sobremesa francesa.",
+  "difficulty": "MÉDIO",
+  "search": "Crêpes Suzette FRANÇA MÉDIO Francesa Farinha de trigo Leite Ovos Manteiga Açúcar Suco de laranja Licor de laranja",
+  "minutes": 45,
+  "timeLabel": "45 min"
+ },
+ {
+  "file": "Receita-Feijoada.dc.html",
+  "title": "Feijoada carioca",
+  "short": "Feijoada carioca",
+  "region": "SUDESTE · RIO DE JANEIRO",
+  "desc": "O clássico prato de domingo do Rio de Janeiro: feijão preto cozido lentamente com carnes salgadas e defumadas, servido com arroz, couve refogada, farofa e laranja.",
+  "difficulty": "DIFÍCIL",
+  "search": "Feijoada carioca SUDESTE · RIO DE JANEIRO DIFÍCIL SEM GLÚTEN Brasileira Feijão preto Carne seca (charque) Costela de porco salgada Linguiça calabresa Bacon em cubos Cebola picada Dentes de alho Folhas de louro Azeite Arroz branco cozido (para servir) Couve refogada (para servir) Laranja em rodelas (para servir)",
+  "minutes": 180,
+  "timeLabel": "3h"
+ },
+ {
+  "file": "Receita-PadThai.dc.html",
+  "title": "Pad thai",
+  "short": "Pad thai",
+  "region": "TAILÂNDIA",
+  "desc": "Macarrão de arroz salteado na wok com camarão, ovo, broto de feijão e amendoim — equilíbrio de doce, salgado e ácido.",
+  "difficulty": "FÁCIL",
+  "search": "Pad thai TAILÂNDIA FÁCIL Tailandesa Macarrão de arroz Camarão ou frango Ovos Broto de feijão Amendoim torrado",
+  "minutes": 30,
+  "timeLabel": "30 min"
+ },
+ {
+  "file": "Receita-PaellaValenciana.dc.html",
+  "title": "Paella valenciana",
+  "short": "Paella valenciana",
+  "region": "ESPANHA",
+  "desc": "Arroz cozido com frango, feijão-verde e açafrão, finalizado com a crosta dourada no fundo da panela — o socarrat.",
+  "difficulty": "MÉDIO",
+  "search": "Paella valenciana ESPANHA MÉDIO Espanhola Arroz bomba ou arbóreo Frango em pedaços Feijão-verde Tomates Açafrão Caldo de frango",
+  "minutes": 60,
+  "timeLabel": "1h"
+ },
+ {
+  "file": "Receita-PaoDeQueijo.dc.html",
+  "title": "Pão de queijo",
+  "short": "Pão de queijo",
+  "region": "SUDESTE · MINAS GERAIS",
+  "desc": "O clássico lanche mineiro: crocante por fora, elástico por dentro, feito com polvilho azedo e queijo minas curado.",
+  "difficulty": "FÁCIL",
+  "search": "Pão de queijo SUDESTE · MINAS GERAIS FÁCIL SEM GLÚTEN Brasileira Polvilho azedo Leite Óleo Ovos Queijo minas curado ralado Sal",
+  "minutes": 40,
+  "timeLabel": "40 min"
+ },
+ {
+  "file": "Receita-PatoNoTucupi.dc.html",
+  "title": "Pato no tucupi",
+  "short": "Pato no tucupi",
+  "region": "NORTE · PARÁ",
+  "desc": "Pato cozido lentamente no caldo de tucupi com jambu — prato central das festas de Círio em Belém.",
+  "difficulty": "DIFÍCIL",
+  "search": "Pato no tucupi NORTE · PARÁ DIFÍCIL SEM GLÚTEN Brasileira Pato inteiro (~2kg) Tucupi Dentes de alho Cebola Folhas de jambu Folhas de louro",
+  "minutes": 180,
+  "timeLabel": "3h"
+ },
+ {
+  "file": "Receita-PizzaMargherita.dc.html",
+  "title": "Pizza Margherita",
+  "short": "Pizza Margherita",
+  "region": "ITÁLIA",
+  "desc": "Massa fina, molho de tomate, mussarela e manjericão fresco — a combinação que batizou a pizza mais famosa da Itália.",
+  "difficulty": "MÉDIO",
+  "search": "Pizza Margherita ITÁLIA MÉDIO Italiana Farinha de trigo Água Fermento biológico Molho de tomate Mussarela",
+  "minutes": 90,
+  "timeLabel": "1h 30 min"
+ },
+ {
+  "file": "Receita-RamenShoyu.dc.html",
+  "title": "Ramen shoyu",
+  "short": "Ramen shoyu",
+  "region": "JAPÃO",
+  "desc": "Caldo apurado temperado com shoyu, macarrão fresco, chashu e ovo cozido — a versão mais clássica do ramen japonês.",
+  "difficulty": "DIFÍCIL",
+  "search": "Ramen shoyu JAPÃO DIFÍCIL Japonesa Caldo de porco ou frango Molho shoyu Macarrão de ramen fresco Chashu (lombo de porco) Ovos cozidos",
+  "minutes": 120,
+  "timeLabel": "2h"
+ },
+ {
+  "file": "Receita-Tacaca.dc.html",
+  "title": "Tacacá",
+  "short": "Tacacá",
+  "region": "NORTE · PARÁ",
+  "desc": "Caldo de tucupi engrossado com goma de tapioca, servido bem quente em cuia com jambu e camarão seco — clássico das ruas de Belém.",
+  "difficulty": "MÉDIO",
+  "search": "Tacacá NORTE · PARÁ MÉDIO SEM GLÚTEN Brasileira Tucupi Goma de tapioca Camarão seco Folhas de jambu Dentes de alho",
+  "minutes": 60,
+  "timeLabel": "1h"
+ },
+ {
+  "file": "Receita-TacosAlPastor.dc.html",
+  "title": "Tacos al pastor",
+  "short": "Tacos al pastor",
+  "region": "MÉXICO",
+  "desc": "Carne de porco marinada em pimentas e achiote, grelhada e servida em tortillas de milho com abacaxi — clássico de rua da Cidade do México.",
+  "difficulty": "MÉDIO",
+  "search": "Tacos al pastor MÉXICO MÉDIO Mexicana Carne de porco em tiras Abacaxi em cubos Cebola Tortillas de milho",
+  "minutes": 60,
+  "timeLabel": "1h"
+ },
+ {
+  "file": "Receita-TagineCordeiro.dc.html",
+  "title": "Tagine de cordeiro",
+  "short": "Tagine de cordeiro",
+  "region": "MARROCOS",
+  "desc": "Cordeiro cozido lentamente com especiarias, damasco seco e grão-de-bico — cozinhado na tradicional panela de barro marroquina.",
+  "difficulty": "MÉDIO",
+  "search": "Tagine de cordeiro MARROCOS MÉDIO Marroquina Cordeiro em cubos Cebolas Damasco seco Grão-de-bico cozido",
+  "minutes": 150,
+  "timeLabel": "2h 30 min"
+ }
+]
