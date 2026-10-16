@@ -2365,3 +2365,10 @@ dialog h2 {
     display: none !important;
   }
 }
+.steps li {
+  scroll-margin-top: 90px;
+}
+.step-name {
+  display: block;
+  font-weight: 600;
+}

@@ -12,9 +12,10 @@ const EXTRAS = require("./content/recipe-extras.cjs");
 const ARTICLES = require("./content/articles.cjs");
 const TOOLS = require("./content/tools.cjs");
 const { TIPS, IDEAS } = require("./content/tips.cjs");
+const STEP_NAMES = require("./content/step-names.cjs");
 
 const BASE = JSON.parse(fs.readFileSync(path.join(ROOT, "site-config.json"), "utf8")).url.replace(/\/?$/, "/");
-const VERSION = "20261012";
+const VERSION = "20261016";
 const read = (f) => fs.readFileSync(path.join(ROOT, f), "utf8");
 const write = (f, s) => fs.writeFileSync(path.join(ROOT, f), s);
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -193,6 +194,20 @@ function relatedFor(r) {
   const seen = new Set();
   return pool.filter((x) => (seen.has(x.file) ? false : seen.add(x.file))).slice(0, 4);
 }
+// Passos com título curto e âncora própria: o mesmo conteúdo vai para o HTML e para o HowToStep.
+function stepNames(file, steps) {
+  const names = STEP_NAMES[file];
+  if (!names || names.length !== steps.length) throw Error(`scripts/content/step-names.cjs: ${file} precisa de ${steps.length} títulos de passo`);
+  return names;
+}
+function stepsHTML(file, steps) {
+  const names = stepNames(file, steps);
+  return `<ol class="steps">${steps.map((s, i) => `<li id="passo-${i + 1}"><span>${String(i + 1).padStart(2, "0")}</span><p><strong class="step-name">${esc(names[i])}</strong>${esc(s)}</p></li>`).join("")}</ol>`;
+}
+function stepsLD(file, steps) {
+  const names = stepNames(file, steps);
+  return steps.map((text, i) => ({ "@type": "HowToStep", position: i + 1, name: names[i], text, url: `${BASE}${file}#passo-${i + 1}` }));
+}
 function extrasSection(r, x) {
   return `<!--extras--><section class="container recipe-extras"><div class="extras-grid"><div><span class="eyebrow">O PULO DO GATO</span><h2>Dicas para acertar</h2><ul class="check-list">${x.tips.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div><div><span class="eyebrow">DEPOIS DO PREPARO</span><h2>Como conservar</h2><p>${esc(x.conserve)}</p><p class="small"><a href="quanto-tempo-dura-na-geladeira.html">Veja quanto tempo dura cada alimento na geladeira ↗</a></p></div></div><span class="eyebrow">DÚVIDAS FREQUENTES</span><h2>Perguntas sobre ${esc(r.short || r.title)}</h2>${faqBlock(x.faqs)}${toolLinks(["ferramenta-ajustar-receita.html", "ferramenta-timer-de-cozinha.html", "ferramenta-lista-de-compras.html", "ferramenta-substituicao-de-ingredientes.html"])}</section><!--/extras-->`;
 }
@@ -217,8 +232,13 @@ for (const r of ORIGINAL) {
     o.recipeCategory = x.category;
     o.keywords = x.keywords;
     o.author = { "@type": "Organization", name: "Clube da Receita", url: BASE };
+    o.recipeInstructions = stepsLD(r.file, o.recipeInstructions.map((s) => s.text));
     return ld(o);
   });
+  {
+    const steps = JSON.parse(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(html)[1]).recipeInstructions.map((s) => s.text);
+    html = html.replace(/<ol class="steps">[\s\S]*?<\/ol>/, stepsHTML(r.file, steps));
+  }
   html = html.replace(/<script type="application\/ld\+json" data-extra>[\s\S]*?<\/script>/g, "");
   html = html.replace("</head>", `<script type="application/ld+json" data-extra>${json([breadcrumbLD([["Início", "/"], ["Receitas", "receitas.html"], [r.title, r.file]]), faqLD(x.faqs)])}</script></head>`);
   // Dicas, conservação e FAQ
@@ -254,7 +274,7 @@ function recipePage(r) {
     recipeCuisine: r.cuisine,
     keywords: r.keywords,
     recipeIngredient: r.ingredients,
-    recipeInstructions: r.steps.map((s, i) => ({ "@type": "HowToStep", position: i + 1, text: s })),
+    recipeInstructions: stepsLD(r.file, r.steps),
   };
   const data = { ingredients: r.rawIngredients.map(({ name, base, kind }) => ({ name, base, kind })), steps: r.steps, servings: r.servings, cost: r.cost };
   const h = head({
@@ -269,8 +289,7 @@ function recipePage(r) {
   const ingredients = r.rawIngredients
     .map((i, n) => `<li><label><input type="checkbox"><span>${esc(i.name)}</span><strong data-quantity="${n}">${i.base == null ? esc(i.kind) : esc(i.base + " " + unitLabel(i))}</strong></label></li>`)
     .join("");
-  const steps = r.steps.map((s, i) => `<li><span>${String(i + 1).padStart(2, "0")}</span><p>${esc(s)}</p></li>`).join("");
-  const main = `${crumbs([["Início", "/"], ["Receitas", "receitas.html"], [r.title, r.file]])}<section class="container recipe-intro"><div><span class="eyebrow">${esc(r.region)} · ${r.difficulty}</span><h1>${esc(r.title)}</h1><p>${esc(r.desc)}</p><div class="recipe-actions"><a class="button" href="#ingredientes">Ir para a receita ↓</a><button class="button-outline" data-save="${r.file}" aria-pressed="false">♡ Salvar receita</button></div><p class="byline">Por Clube da Receita · ${esc(r.category)}</p></div><div class="recipe-title-art recipe-photo"><img src="${esc(a.src)}" srcset="${esc(a.srcset)}" sizes="(max-width: 800px) 100vw, 50vw" alt="${esc(a.alt)}" width="960" height="720" fetchpriority="high" decoding="async" onerror="this.parentNode.classList.add('no-photo');this.remove()"><span class="recipe-art-name">${esc(r.short)}</span><span class="photo-credit">${creditHTML(r.file)}</span></div></section><div class="container recipe-meta"><div><span>Preparo</span><strong>${minutesLabel(r.prep)}</strong></div><div><span>Cozimento</span><strong>${minutesLabel(r.cook)}</strong></div><div><span>Tempo total</span><strong>${minutesLabel(total)}</strong></div><div><span>Rendimento original</span><strong>${r.servings} porções</strong></div><button class="button-outline" id="cook-start">Modo cozinha ↗</button><button class="plain-button" data-print>Imprimir</button><button class="plain-button" id="add-to-list">+ Lista de compras</button></div><section class="container recipe-layout"><aside id="ingredientes"><div class="ingredient-panel"><span class="eyebrow">SEPARE NA BANCADA</span><h2>Ingredientes</h2><div class="servings"><span>Quantas porções?</span><button id="servings-minus" aria-label="Diminuir porções">−</button><output id="servings-count" aria-live="polite">${r.servings}</output><button id="servings-plus" aria-label="Aumentar porções">+</button></div><ul class="ingredients">${ingredients}</ul><p class="small muted">Marque o que já separou. Quantidades são proporcionais; ajuste os temperos ao seu paladar.</p><details class="cost-panel"><summary>Calculadora de custo</summary><p class="small">Estimativa para a receita original. Atualize com o valor que você pagou nos ingredientes.</p><div class="price-fields"><label>Custo total da receita original (R$)<input type="number" min="0" max="100000" step="0.01" data-price="priceTotal" value="${r.cost}"></label></div><p>Total estimado <strong id="total-cost"></strong></p><p>Por porção <strong id="portion-cost"></strong></p></details></div></aside><article class="method"><span class="eyebrow">AGORA, MÃOS À MASSA</span><h2>Modo de preparo</h2><ol class="steps">${steps}</ol><div class="tip"><strong>Vai cozinhar para mais gente?</strong><p>Ajuste as porções na lista ao lado. Tempo de forno e tamanho da forma podem precisar de adaptação.</p></div></article></section>${extrasSection(r, r)}${relatedRecipes(relatedFor(r).map((x) => x.file), "Seu próximo prato.")}<dialog id="cook-dialog" aria-labelledby="cook-title"><button class="dialog-close" id="cook-close" aria-label="Fechar modo cozinha">×</button><span class="eyebrow">MODO COZINHA</span><h2 id="cook-title">${esc(r.title)}</h2><p id="cook-progress" aria-live="polite"></p><p id="cook-text" aria-live="polite"></p><div class="cook-buttons"><button class="button-outline" id="cook-prev">← Anterior</button><button class="button" id="cook-next">Próximo →</button></div></dialog>`;
+  const main = `${crumbs([["Início", "/"], ["Receitas", "receitas.html"], [r.title, r.file]])}<section class="container recipe-intro"><div><span class="eyebrow">${esc(r.region)} · ${r.difficulty}</span><h1>${esc(r.title)}</h1><p>${esc(r.desc)}</p><div class="recipe-actions"><a class="button" href="#ingredientes">Ir para a receita ↓</a><button class="button-outline" data-save="${r.file}" aria-pressed="false">♡ Salvar receita</button></div><p class="byline">Por Clube da Receita · ${esc(r.category)}</p></div><div class="recipe-title-art recipe-photo"><img src="${esc(a.src)}" srcset="${esc(a.srcset)}" sizes="(max-width: 800px) 100vw, 50vw" alt="${esc(a.alt)}" width="960" height="720" fetchpriority="high" decoding="async" onerror="this.parentNode.classList.add('no-photo');this.remove()"><span class="recipe-art-name">${esc(r.short)}</span><span class="photo-credit">${creditHTML(r.file)}</span></div></section><div class="container recipe-meta"><div><span>Preparo</span><strong>${minutesLabel(r.prep)}</strong></div><div><span>Cozimento</span><strong>${minutesLabel(r.cook)}</strong></div><div><span>Tempo total</span><strong>${minutesLabel(total)}</strong></div><div><span>Rendimento original</span><strong>${r.servings} porções</strong></div><button class="button-outline" id="cook-start">Modo cozinha ↗</button><button class="plain-button" data-print>Imprimir</button><button class="plain-button" id="add-to-list">+ Lista de compras</button></div><section class="container recipe-layout"><aside id="ingredientes"><div class="ingredient-panel"><span class="eyebrow">SEPARE NA BANCADA</span><h2>Ingredientes</h2><div class="servings"><span>Quantas porções?</span><button id="servings-minus" aria-label="Diminuir porções">−</button><output id="servings-count" aria-live="polite">${r.servings}</output><button id="servings-plus" aria-label="Aumentar porções">+</button></div><ul class="ingredients">${ingredients}</ul><p class="small muted">Marque o que já separou. Quantidades são proporcionais; ajuste os temperos ao seu paladar.</p><details class="cost-panel"><summary>Calculadora de custo</summary><p class="small">Estimativa para a receita original. Atualize com o valor que você pagou nos ingredientes.</p><div class="price-fields"><label>Custo total da receita original (R$)<input type="number" min="0" max="100000" step="0.01" data-price="priceTotal" value="${r.cost}"></label></div><p>Total estimado <strong id="total-cost"></strong></p><p>Por porção <strong id="portion-cost"></strong></p></details></div></aside><article class="method"><span class="eyebrow">AGORA, MÃOS À MASSA</span><h2>Modo de preparo</h2>${stepsHTML(r.file, r.steps)}<div class="tip"><strong>Vai cozinhar para mais gente?</strong><p>Ajuste as porções na lista ao lado. Tempo de forno e tamanho da forma podem precisar de adaptação.</p></div></article></section>${extrasSection(r, r)}${relatedRecipes(relatedFor(r).map((x) => x.file), "Seu próximo prato.")}<dialog id="cook-dialog" aria-labelledby="cook-title"><button class="dialog-close" id="cook-close" aria-label="Fechar modo cozinha">×</button><span class="eyebrow">MODO COZINHA</span><h2 id="cook-title">${esc(r.title)}</h2><p id="cook-progress" aria-live="polite"></p><p id="cook-text" aria-live="polite"></p><div class="cook-buttons"><button class="button-outline" id="cook-prev">← Anterior</button><button class="button" id="cook-next">Próximo →</button></div></dialog>`;
   return page(h, main);
 }
 for (const r of FRESH) write(r.file, recipePage(r));
