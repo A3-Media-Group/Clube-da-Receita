@@ -12,9 +12,11 @@ const EXTRAS = require("./content/recipe-extras.cjs");
 const ARTICLES = require("./content/articles.cjs");
 const TOOLS = require("./content/tools.cjs");
 const { TIPS, IDEAS } = require("./content/tips.cjs");
+const STEP_NAMES = require("./content/step-names.cjs");
+const TOOLS_EXTRA = require("./content/tools-extra.cjs");
 
 const BASE = JSON.parse(fs.readFileSync(path.join(ROOT, "site-config.json"), "utf8")).url.replace(/\/?$/, "/");
-const VERSION = "20261012";
+const VERSION = "20261016";
 const read = (f) => fs.readFileSync(path.join(ROOT, f), "utf8");
 const write = (f, s) => fs.writeFileSync(path.join(ROOT, f), s);
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -24,19 +26,19 @@ const json = (o) => JSON.stringify(o).replace(/</g, "\\u003c");
 /* ------------------------------------------------------------------ */
 /* Cabeçalho e rodapé compartilhados                                   */
 /* ------------------------------------------------------------------ */
-const NAV = `<nav id="navigation" aria-label="Navegação principal"><a href="Receitas.html">Receitas</a><a href="index.html#regioes">Pelo Brasil</a><a href="Receitas-Internacional.dc.html">Pelo mundo</a><a href="Ferramentas.dc.html">Ferramentas</a><a href="dicas-de-cozinha.html">Dicas</a><a href="Blog.dc.html">Caderno</a></nav>`;
-const FOOTER = `<footer class="footer"><div class="container footer-grid footer-grid-wide"><div><a class="brand" href="index.html" aria-label="Clube da Receita — início"><span class="brand-mark" aria-hidden="true">♧</span><span>clube da receita<small>BOA COMIDA. BOAS HISTÓRIAS.</small></span></a><p>A cozinha aproxima.<br>Uma boa receita é só o começo.</p></div><div><h3>Explore à vontade</h3><a href="Receitas.html">Todas as receitas</a><a href="receitas-mais-buscadas.html">Receitas mais buscadas</a><a href="Busca-Geladeira.dc.html">O que tem na geladeira?</a><a href="ideias-de-cardapio.html">Ideias de cardápio</a><a href="dicas-de-cozinha.html">Dicas de cozinha</a></div><div><h3>Ferramentas</h3><a href="ferramenta-conversor-de-medidas.html">Conversor de medidas</a><a href="ferramenta-calculadora-de-churrasco.html">Calculadora de churrasco</a><a href="ferramenta-calculadora-de-festa.html">Calculadora de festa</a><a href="ferramenta-lista-de-compras.html">Lista de compras</a><a href="Ferramentas.dc.html">Todas as ferramentas</a></div><div><h3>Guias</h3><a href="air-fryer-tempo-e-temperatura.html">Tabela da air fryer</a><a href="quanto-tempo-dura-na-geladeira.html">Validade na geladeira</a><a href="tabela-de-medidas-caseiras.html">Medidas caseiras</a><a href="quanto-tempo-cozinhar-ovo.html">Tempo do ovo cozido</a><a href="Blog.dc.html">Todo o caderno</a></div><div><h3>Nosso clube</h3><a href="Sobre.dc.html">Sobre o projeto</a><a href="Contato.dc.html">Fale com a gente</a><a href="creditos-das-imagens.html">Créditos das imagens</a></div></div><div class="container footer-bottom"><span>© 2026 Clube da Receita · Feito para quem gosta de cozinhar.</span><div><a href="Politica-Privacidade.dc.html">Privacidade</a><a href="Termos-Uso.dc.html">Termos de uso</a></div></div></footer>`;
+const NAV = `<nav id="navigation" aria-label="Navegação principal"><a href="receitas.html">Receitas</a><a href="/#regioes">Pelo Brasil</a><a href="receitas-internacionais.html">Pelo mundo</a><a href="ferramentas.html">Ferramentas</a><a href="dicas-de-cozinha.html">Dicas</a><a href="blog.html">Caderno</a></nav>`;
+const FOOTER = `<footer class="footer"><div class="container footer-grid footer-grid-wide"><div><a class="brand" href="/" aria-label="Clube da Receita — início"><span class="brand-mark" aria-hidden="true">♧</span><span>clube da receita<small>BOA COMIDA. BOAS HISTÓRIAS.</small></span></a><p>A cozinha aproxima.<br>Uma boa receita é só o começo.</p></div><div><h3>Explore à vontade</h3><a href="receitas.html">Todas as receitas</a><a href="receitas-mais-buscadas.html">Receitas mais buscadas</a><a href="busca-geladeira.html">O que tem na geladeira?</a><a href="ideias-de-cardapio.html">Ideias de cardápio</a><a href="dicas-de-cozinha.html">Dicas de cozinha</a></div><div><h3>Ferramentas</h3><a href="ferramenta-conversor-de-medidas.html">Conversor de medidas</a><a href="ferramenta-calculadora-de-churrasco.html">Calculadora de churrasco</a><a href="ferramenta-calculadora-de-festa.html">Calculadora de festa</a><a href="ferramenta-lista-de-compras.html">Lista de compras</a><a href="ferramentas.html">Todas as ferramentas</a></div><div><h3>Guias</h3><a href="air-fryer-tempo-e-temperatura.html">Tabela da air fryer</a><a href="quanto-tempo-dura-na-geladeira.html">Validade na geladeira</a><a href="tabela-de-medidas-caseiras.html">Medidas caseiras</a><a href="quanto-tempo-cozinhar-ovo.html">Tempo do ovo cozido</a><a href="blog.html">Todo o caderno</a></div><div><h3>Nosso clube</h3><a href="sobre.html">Sobre o projeto</a><a href="contato.html">Fale com a gente</a><a href="creditos-das-imagens.html">Créditos das imagens</a></div></div><div class="container footer-bottom"><span>© 2026 Clube da Receita · Feito para quem gosta de cozinhar.</span><div><a href="politica-de-privacidade.html">Privacidade</a><a href="termos-de-uso.html">Termos de uso</a></div></div></footer>`;
 
 function head({ title, desc, type = "website", file, image, extra = "", scripts = [] }) {
   const url = BASE + (file === "index.html" ? "" : file);
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} | Clube da Receita</title><meta name="description" content="${esc(desc)}"><meta name="robots" content="index,follow,max-image-preview:large"><meta name="theme-color" content="#243f35"><meta property="og:type" content="${type}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:locale" content="pt_BR"><meta property="og:site_name" content="Clube da Receita"><meta property="og:image" content="${esc(image)}"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://commons.wikimedia.org"><link rel="preconnect" href="https://upload.wikimedia.org"><link rel="stylesheet" href="assets/site.css?v=${VERSION}">${scripts.map((s) => `<script defer src="${s}"></script>`).join("")}<script defer src="assets/site.js?v=${VERSION}"></script>${extra}<link rel="canonical" href="${esc(url)}"><meta property="og:url" content="${esc(url)}"></head>`;
 }
-const BODY_TOP = `<body><a class="skip" href="#conteudo">Pular para o conteúdo</a><div class="topline">UM CONVITE PARA COZINHAR, DESCOBRIR E COMPARTILHAR.</div><header class="header"><div class="container nav"><a class="brand" href="index.html" aria-label="Clube da Receita — início"><span class="brand-mark" aria-hidden="true">♧</span><span>clube da receita<small>BOA COMIDA. BOAS HISTÓRIAS.</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu ☰</button>${NAV}<a class="saved-link" href="Favoritos.html">♡ <span>Meu caderno</span></a></div></header>`;
+const BODY_TOP = `<body><a class="skip" href="#conteudo">Pular para o conteúdo</a><div class="topline">UM CONVITE PARA COZINHAR, DESCOBRIR E COMPARTILHAR.</div><header class="header"><div class="container nav"><a class="brand" href="/" aria-label="Clube da Receita — início"><span class="brand-mark" aria-hidden="true">♧</span><span>clube da receita<small>BOA COMIDA. BOAS HISTÓRIAS.</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu ☰</button>${NAV}<a class="saved-link" href="favoritos.html">♡ <span>Meu caderno</span></a></div></header>`;
 const page = (h, main) => `${h}${BODY_TOP}<main id="conteudo">${main}</main>${FOOTER}</body></html>`;
 const breadcrumbLD = (items) => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  itemListElement: items.map(([name, f], i) => ({ "@type": "ListItem", position: i + 1, name, item: BASE + (f === "index.html" ? "" : f) })),
+  itemListElement: items.map(([name, f], i) => ({ "@type": "ListItem", position: i + 1, name, item: BASE + (f === "/" ? "" : f) })),
 });
 const ld = (o) => `<script type="application/ld+json">${json(o)}</script>`;
 const crumbs = (items) => `<div class="container breadcrumb">${items.map(([n, f], i) => (i === items.length - 1 ? esc(n) : `<a href="${f}">${esc(n)}</a><span>/</span>`)).join("")}</div>`;
@@ -49,16 +51,16 @@ const toMinutes = (s) => {
   return (h ? +h[1] * 60 : 0) + (m ? +m[1] : 0);
 };
 const minutesLabel = (m) => (m >= 60 ? `${Math.floor(m / 60)}h${m % 60 ? " " + (m % 60) + " min" : ""}` : `${m} min`);
-const SWEET = new Set(["Receita-CheesecakeNY.dc.html", "Receita-CrepesSuzette.dc.html"]);
+const SWEET = new Set(["receita-cheesecake-nova-york.html", "receita-crepes-suzette.html"]);
 
 function parseCatalogue() {
-  const html = read("Receitas.html");
+  const html = read("receitas.html");
   const out = [];
   const re = /<article class="recipe-card" data-recipe="([^"]+)" data-search="([^"]*)" data-difficulty="([^"]+)"[^>]*>([\s\S]*?)<\/article>/g;
   let m;
   while ((m = re.exec(html))) {
     const [, file, search, difficulty, inner] = m;
-    if (!file.startsWith("Receita-")) continue;
+    if (!file.startsWith("receita-")) continue;
     const title = /<h3><a [^>]*>([^<]+)<\/a><\/h3>/.exec(inner)[1];
     const region = /<span class="eyebrow">([^<]+)<\/span>/.exec(inner)[1];
     const desc = /<p>([\s\S]*?)<\/p>/.exec(inner)[1];
@@ -107,6 +109,7 @@ function unitLabel(i) {
 const ALL = [...FRESH, ...ORIGINAL];
 const byFile = Object.fromEntries(ALL.map((r) => [r.file, r]));
 const isBrazil = (r) => r.cuisine === "Brasileira";
+const REGION_NAMES = { "regiao-norte.html": "Norte", "regiao-nordeste.html": "Nordeste", "regiao-sul.html": "Sul", "regiao-sudeste.html": "Sudeste", "regiao-centro-oeste.html": "Centro-Oeste" };
 
 function categories(r) {
   const c = [r.type === "doce" ? "doces" : "salgados", isBrazil(r) ? "brasileiras" : "internacionais"];
@@ -145,13 +148,12 @@ function modernize(html, file, { title, desc, image } = {}) {
   html = html.replace(/assets\/site\.css(\?v=\d+)?/g, `assets/site.css?v=${VERSION}`).replace(/assets\/site\.js(\?v=\d+)?/g, `assets/site.js?v=${VERSION}`);
   html = html.replace(/<link rel="canonical"[^>]*>|<meta property="og:(url|image)"[^>]*>|<meta name="twitter:card"[^>]*>|<meta name="robots" content="index[^>]*>/g, "");
   if (desc) html = html.replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${esc(desc)}">`).replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${esc(desc)}">`);
-  if (["Favoritos.html", "404.html"].includes(file) && !/noindex/.test(html)) html = html.replace("</head>", '<meta name="robots" content="noindex,follow"></head>');
+  if (["favoritos.html", "404.html"].includes(file) && !/noindex/.test(html)) html = html.replace("</head>", '<meta name="robots" content="noindex,follow"></head>');
   const noindex = /noindex/.test(html);
   const url = BASE + (file === "index.html" ? "" : file);
-  const canon = file === "Home.dc.html" ? BASE : url;
   html = html.replace(
     "</head>",
-    `${noindex ? "" : '<meta name="robots" content="index,follow,max-image-preview:large">'}<meta property="og:image" content="${esc(image || BASE + "public/images/institucional/hero-home.webp")}"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="${esc(canon)}"><meta property="og:url" content="${esc(canon)}"></head>`,
+    `${noindex ? "" : '<meta name="robots" content="index,follow,max-image-preview:large">'}<meta property="og:image" content="${esc(image || BASE + "public/images/institucional/hero-home.webp")}"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="${esc(url)}"><meta property="og:url" content="${esc(url)}"></head>`,
   );
   // Cartões de receita com foto em qualquer grade da página.
   html = html.replace(/<a class="card-art (?:card-photo )?tone-(\d)[^"]*" href="([^"]+)" tabindex="-1" aria-hidden="true">([\s\S]*?)<\/a>/g, (m, tone, href) => {
@@ -173,7 +175,7 @@ function heroFigure(key, { eager = false } = {}) {
 function relatedRecipes(files, heading = "Receitas para colocar em prática") {
   const list = files.map((f) => byFile[f]).filter(Boolean);
   if (!list.length) return "";
-  return `<section class="container section"><div class="section-heading"><div><span class="eyebrow">CONTINUE EXPLORANDO</span><h2>${heading}</h2></div><a class="text-link" href="Receitas.html">Todas as receitas ↗</a></div>${grid(list)}</section>`;
+  return `<section class="container section"><div class="section-heading"><div><span class="eyebrow">CONTINUE EXPLORANDO</span><h2>${heading}</h2></div><a class="text-link" href="receitas.html">Todas as receitas ↗</a></div>${grid(list)}</section>`;
 }
 function toolLinks(files) {
   const list = files.map((f) => TOOLS.find((t) => t.file === f)).filter(Boolean);
@@ -193,8 +195,26 @@ function relatedFor(r) {
   const seen = new Set();
   return pool.filter((x) => (seen.has(x.file) ? false : seen.add(x.file))).slice(0, 4);
 }
+// Passos com título curto e âncora própria: o mesmo conteúdo vai para o HTML e para o HowToStep.
+function stepNames(file, steps) {
+  const names = STEP_NAMES[file];
+  if (!names || names.length !== steps.length) throw Error(`scripts/content/step-names.cjs: ${file} precisa de ${steps.length} títulos de passo`);
+  return names;
+}
+function stepsHTML(file, steps) {
+  const names = stepNames(file, steps);
+  return `<ol class="steps">${steps.map((s, i) => `<li id="passo-${i + 1}"><span>${String(i + 1).padStart(2, "0")}</span><p><strong class="step-name">${esc(names[i])}</strong>${esc(s)}</p></li>`).join("")}</ol>`;
+}
+function stepsLD(file, steps) {
+  const names = stepNames(file, steps);
+  return steps.map((text, i) => ({ "@type": "HowToStep", position: i + 1, name: names[i], text, url: `${BASE}${file}#passo-${i + 1}` }));
+}
+// Ferramentas citadas em tools-extra.cjs como relacionadas a cada receita.
+const TOOLS_FOR_RECIPE = {};
+for (const [tool, x] of Object.entries(TOOLS_EXTRA)) for (const f of x.recipes) (TOOLS_FOR_RECIPE[f] ||= []).push(tool);
+const RECIPE_TOOLS = ["ferramenta-ajustar-receita.html", "ferramenta-timer-de-cozinha.html", "ferramenta-lista-de-compras.html", "ferramenta-substituicao-de-ingredientes.html"];
 function extrasSection(r, x) {
-  return `<!--extras--><section class="container recipe-extras"><div class="extras-grid"><div><span class="eyebrow">O PULO DO GATO</span><h2>Dicas para acertar</h2><ul class="check-list">${x.tips.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div><div><span class="eyebrow">DEPOIS DO PREPARO</span><h2>Como conservar</h2><p>${esc(x.conserve)}</p><p class="small"><a href="quanto-tempo-dura-na-geladeira.html">Veja quanto tempo dura cada alimento na geladeira ↗</a></p></div></div><span class="eyebrow">DÚVIDAS FREQUENTES</span><h2>Perguntas sobre ${esc(r.short || r.title)}</h2>${faqBlock(x.faqs)}${toolLinks(["ferramenta-ajustar-receita.html", "ferramenta-timer-de-cozinha.html", "ferramenta-lista-de-compras.html", "ferramenta-substituicao-de-ingredientes.html"])}</section><!--/extras-->`;
+  return `<!--extras--><section class="container recipe-extras"><div class="extras-grid"><div><span class="eyebrow">O PULO DO GATO</span><h2>Dicas para acertar</h2><ul class="check-list">${x.tips.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div><div><span class="eyebrow">DEPOIS DO PREPARO</span><h2>Como conservar</h2><p>${esc(x.conserve)}</p><p class="small"><a href="quanto-tempo-dura-na-geladeira.html">Veja quanto tempo dura cada alimento na geladeira ↗</a></p></div></div><span class="eyebrow">DÚVIDAS FREQUENTES</span><h2>Perguntas sobre ${esc(r.short || r.title)}</h2>${faqBlock(x.faqs)}${toolLinks([...new Set([...(TOOLS_FOR_RECIPE[r.file] || []), ...RECIPE_TOOLS])])}</section><!--/extras-->`;
 }
 
 /* ------------------------------------------------------------------ */
@@ -217,10 +237,15 @@ for (const r of ORIGINAL) {
     o.recipeCategory = x.category;
     o.keywords = x.keywords;
     o.author = { "@type": "Organization", name: "Clube da Receita", url: BASE };
+    o.recipeInstructions = stepsLD(r.file, o.recipeInstructions.map((s) => s.text));
     return ld(o);
   });
+  {
+    const steps = JSON.parse(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(html)[1]).recipeInstructions.map((s) => s.text);
+    html = html.replace(/<ol class="steps">[\s\S]*?<\/ol>/, stepsHTML(r.file, steps));
+  }
   html = html.replace(/<script type="application\/ld\+json" data-extra>[\s\S]*?<\/script>/g, "");
-  html = html.replace("</head>", `<script type="application/ld+json" data-extra>${json([breadcrumbLD([["Início", "index.html"], ["Receitas", "Receitas.html"], [r.title, r.file]]), faqLD(x.faqs)])}</script></head>`);
+  html = html.replace("</head>", `<script type="application/ld+json" data-extra>${json([breadcrumbLD([["Início", "/"], ["Receitas", "receitas.html"], [r.title, r.file]]), faqLD(x.faqs)])}</script></head>`);
   // Dicas, conservação e FAQ
   html = html.replace(/<!--extras-->[\s\S]*?<!--\/extras-->/, "");
   const cont = html.indexOf('<section class="container section"><div class="section-heading"><div><span class="eyebrow">CONTINUE EXPLORANDO');
@@ -254,7 +279,7 @@ function recipePage(r) {
     recipeCuisine: r.cuisine,
     keywords: r.keywords,
     recipeIngredient: r.ingredients,
-    recipeInstructions: r.steps.map((s, i) => ({ "@type": "HowToStep", position: i + 1, text: s })),
+    recipeInstructions: stepsLD(r.file, r.steps),
   };
   const data = { ingredients: r.rawIngredients.map(({ name, base, kind }) => ({ name, base, kind })), steps: r.steps, servings: r.servings, cost: r.cost };
   const h = head({
@@ -264,13 +289,12 @@ function recipePage(r) {
     file: r.file,
     image: img,
     scripts: [`assets/recipe-generic.js?v=${VERSION}`],
-    extra: ld(recipeLD) + `<script type="application/ld+json" data-extra>${json([breadcrumbLD([["Início", "index.html"], ["Receitas", "Receitas.html"], [r.title, r.file]]), faqLD(r.faqs)])}</script><script type="application/json" id="recipe-json">${json(data)}</script>`,
+    extra: ld(recipeLD) + `<script type="application/ld+json" data-extra>${json([breadcrumbLD([["Início", "/"], ["Receitas", "receitas.html"], [r.title, r.file]]), faqLD(r.faqs)])}</script><script type="application/json" id="recipe-json">${json(data)}</script>`,
   });
   const ingredients = r.rawIngredients
     .map((i, n) => `<li><label><input type="checkbox"><span>${esc(i.name)}</span><strong data-quantity="${n}">${i.base == null ? esc(i.kind) : esc(i.base + " " + unitLabel(i))}</strong></label></li>`)
     .join("");
-  const steps = r.steps.map((s, i) => `<li><span>${String(i + 1).padStart(2, "0")}</span><p>${esc(s)}</p></li>`).join("");
-  const main = `${crumbs([["Início", "index.html"], ["Receitas", "Receitas.html"], [r.title, r.file]])}<section class="container recipe-intro"><div><span class="eyebrow">${esc(r.region)} · ${r.difficulty}</span><h1>${esc(r.title)}</h1><p>${esc(r.desc)}</p><div class="recipe-actions"><a class="button" href="#ingredientes">Ir para a receita ↓</a><button class="button-outline" data-save="${r.file}" aria-pressed="false">♡ Salvar receita</button></div><p class="byline">Por Clube da Receita · ${esc(r.category)}</p></div><div class="recipe-title-art recipe-photo"><img src="${esc(a.src)}" srcset="${esc(a.srcset)}" sizes="(max-width: 800px) 100vw, 50vw" alt="${esc(a.alt)}" width="960" height="720" fetchpriority="high" decoding="async" onerror="this.parentNode.classList.add('no-photo');this.remove()"><span class="recipe-art-name">${esc(r.short)}</span><span class="photo-credit">${creditHTML(r.file)}</span></div></section><div class="container recipe-meta"><div><span>Preparo</span><strong>${minutesLabel(r.prep)}</strong></div><div><span>Cozimento</span><strong>${minutesLabel(r.cook)}</strong></div><div><span>Tempo total</span><strong>${minutesLabel(total)}</strong></div><div><span>Rendimento original</span><strong>${r.servings} porções</strong></div><button class="button-outline" id="cook-start">Modo cozinha ↗</button><button class="plain-button" data-print>Imprimir</button><button class="plain-button" id="add-to-list">+ Lista de compras</button></div><section class="container recipe-layout"><aside id="ingredientes"><div class="ingredient-panel"><span class="eyebrow">SEPARE NA BANCADA</span><h2>Ingredientes</h2><div class="servings"><span>Quantas porções?</span><button id="servings-minus" aria-label="Diminuir porções">−</button><output id="servings-count" aria-live="polite">${r.servings}</output><button id="servings-plus" aria-label="Aumentar porções">+</button></div><ul class="ingredients">${ingredients}</ul><p class="small muted">Marque o que já separou. Quantidades são proporcionais; ajuste os temperos ao seu paladar.</p><details class="cost-panel"><summary>Calculadora de custo</summary><p class="small">Estimativa para a receita original. Atualize com o valor que você pagou nos ingredientes.</p><div class="price-fields"><label>Custo total da receita original (R$)<input type="number" min="0" max="100000" step="0.01" data-price="priceTotal" value="${r.cost}"></label></div><p>Total estimado <strong id="total-cost"></strong></p><p>Por porção <strong id="portion-cost"></strong></p></details></div></aside><article class="method"><span class="eyebrow">AGORA, MÃOS À MASSA</span><h2>Modo de preparo</h2><ol class="steps">${steps}</ol><div class="tip"><strong>Vai cozinhar para mais gente?</strong><p>Ajuste as porções na lista ao lado. Tempo de forno e tamanho da forma podem precisar de adaptação.</p></div></article></section>${extrasSection(r, r)}${relatedRecipes(relatedFor(r).map((x) => x.file), "Seu próximo prato.")}<dialog id="cook-dialog" aria-labelledby="cook-title"><button class="dialog-close" id="cook-close" aria-label="Fechar modo cozinha">×</button><span class="eyebrow">MODO COZINHA</span><h2 id="cook-title">${esc(r.title)}</h2><p id="cook-progress" aria-live="polite"></p><p id="cook-text" aria-live="polite"></p><div class="cook-buttons"><button class="button-outline" id="cook-prev">← Anterior</button><button class="button" id="cook-next">Próximo →</button></div></dialog>`;
+  const main = `${crumbs([["Início", "/"], ["Receitas", "receitas.html"], [r.title, r.file]])}<section class="container recipe-intro"><div><span class="eyebrow">${esc(r.region)} · ${r.difficulty}</span><h1>${esc(r.title)}</h1><p>${esc(r.desc)}</p><div class="recipe-actions"><a class="button" href="#ingredientes">Ir para a receita ↓</a><button class="button-outline" data-save="${r.file}" aria-pressed="false">♡ Salvar receita</button></div><p class="byline">Por Clube da Receita · ${esc(r.category)}</p></div><div class="recipe-title-art recipe-photo"><img src="${esc(a.src)}" srcset="${esc(a.srcset)}" sizes="(max-width: 800px) 100vw, 50vw" alt="${esc(a.alt)}" width="960" height="720" fetchpriority="high" decoding="async" onerror="this.parentNode.classList.add('no-photo');this.remove()"><span class="recipe-art-name">${esc(r.short)}</span><span class="photo-credit">${creditHTML(r.file)}</span></div></section><div class="container recipe-meta"><div><span>Preparo</span><strong>${minutesLabel(r.prep)}</strong></div><div><span>Cozimento</span><strong>${minutesLabel(r.cook)}</strong></div><div><span>Tempo total</span><strong>${minutesLabel(total)}</strong></div><div><span>Rendimento original</span><strong>${r.servings} porções</strong></div><button class="button-outline" id="cook-start">Modo cozinha ↗</button><button class="plain-button" data-print>Imprimir</button><button class="plain-button" id="add-to-list">+ Lista de compras</button></div><section class="container recipe-layout"><aside id="ingredientes"><div class="ingredient-panel"><span class="eyebrow">SEPARE NA BANCADA</span><h2>Ingredientes</h2><div class="servings"><span>Quantas porções?</span><button id="servings-minus" aria-label="Diminuir porções">−</button><output id="servings-count" aria-live="polite">${r.servings}</output><button id="servings-plus" aria-label="Aumentar porções">+</button></div><ul class="ingredients">${ingredients}</ul><p class="small muted">Marque o que já separou. Quantidades são proporcionais; ajuste os temperos ao seu paladar.</p><details class="cost-panel"><summary>Calculadora de custo</summary><p class="small">Estimativa para a receita original. Atualize com o valor que você pagou nos ingredientes.</p><div class="price-fields"><label>Custo total da receita original (R$)<input type="number" min="0" max="100000" step="0.01" data-price="priceTotal" value="${r.cost}"></label></div><p>Total estimado <strong id="total-cost"></strong></p><p>Por porção <strong id="portion-cost"></strong></p></details></div></aside><article class="method"><span class="eyebrow">AGORA, MÃOS À MASSA</span><h2>Modo de preparo</h2>${stepsHTML(r.file, r.steps)}<div class="tip"><strong>Vai cozinhar para mais gente?</strong><p>Ajuste as porções na lista ao lado. Tempo de forno e tamanho da forma podem precisar de adaptação.</p></div></article></section>${extrasSection(r, r)}${relatedRecipes(relatedFor(r).map((x) => x.file), "Seu próximo prato.")}<dialog id="cook-dialog" aria-labelledby="cook-title"><button class="dialog-close" id="cook-close" aria-label="Fechar modo cozinha">×</button><span class="eyebrow">MODO COZINHA</span><h2 id="cook-title">${esc(r.title)}</h2><p id="cook-progress" aria-live="polite"></p><p id="cook-text" aria-live="polite"></p><div class="cook-buttons"><button class="button-outline" id="cook-prev">← Anterior</button><button class="button" id="cook-next">Próximo →</button></div></dialog>`;
   return page(h, main);
 }
 for (const r of FRESH) write(r.file, recipePage(r));
@@ -291,16 +315,16 @@ function articleShell(a, bodyHTML, { file }) {
     publisher: { "@type": "Organization", name: "Clube da Receita", logo: { "@type": "ImageObject", url: BASE + "assets/favicon.svg" } },
     mainEntityOfPage: BASE + file,
   };
-  const h = head({ title: a.title, desc: a.desc, type: "article", file, image: img, extra: ld([articleLD, breadcrumbLD([["Início", "index.html"], ["Caderno", "Blog.dc.html"], [a.h1, file]])]) });
-  const main = `${crumbs([["Início", "index.html"], ["Caderno", "Blog.dc.html"], [a.h1, file]])}<article class="container prose article"><span class="eyebrow">${esc(a.eyebrow)}</span><h1>${esc(a.h1)}</h1><p class="lead">${esc(a.desc)}</p><p class="byline">Por Clube da Receita · leitura de ${a.minutes} min</p>${heroFigure(file, { eager: true })}${bodyHTML}${toolLinks(a.tools || [])}<p class="small muted article-note">Conteúdo informativo, revisado pela equipe editorial do Clube da Receita. Prazos e temperaturas são referências gerais; siga sempre as orientações do rótulo e, em caso de dúvida sobre segurança dos alimentos, descarte.</p><a class="button-outline" href="Blog.dc.html">← Voltar ao caderno</a></article>${relatedRecipes(a.recipes || [])}`;
+  const h = head({ title: a.title, desc: a.desc, type: "article", file, image: img, extra: ld([articleLD, breadcrumbLD([["Início", "/"], ["Caderno", "blog.html"], [a.h1, file]])]) });
+  const main = `${crumbs([["Início", "/"], ["Caderno", "blog.html"], [a.h1, file]])}<article class="container prose article"><span class="eyebrow">${esc(a.eyebrow)}</span><h1>${esc(a.h1)}</h1><p class="lead">${esc(a.desc)}</p><p class="byline">Por Clube da Receita · leitura de ${a.minutes} min</p>${heroFigure(file, { eager: true })}${bodyHTML}${toolLinks(a.tools || [])}<p class="small muted article-note">Conteúdo informativo, revisado pela equipe editorial do Clube da Receita. Prazos e temperaturas são referências gerais; siga sempre as orientações do rótulo e, em caso de dúvida sobre segurança dos alimentos, descarte.</p><a class="button-outline" href="blog.html">← Voltar ao caderno</a></article>${relatedRecipes(a.recipes || [])}`;
   return page(h, main);
 }
 for (const a of ARTICLES) write(a.file, articleShell(a, a.body, { file: a.file }));
 
 // Artigos antigos: ganham foto própria, ferramentas e receitas relacionadas.
 const OLD_ARTICLES = [
-  { file: "Blog-GuiaTemperos.dc.html", title: "Guia de temperos de cada região do Brasil", h1: "Guia de temperos de cada região do Brasil", desc: "Tucupi, jambu, dendê, pequi, queijo minas e erva-mate: conheça os temperos e ingredientes que dão identidade às cozinhas de cada região do Brasil.", eyebrow: "CADERNO · CULTURA & INGREDIENTES", minutes: 4, tools: ["ferramenta-substituicao-de-ingredientes.html"], recipes: ["Receita-Tacaca.dc.html", "Receita-Acaraje.dc.html", "Receita-ArrozComPequi.dc.html", "Receita-PaoDeQueijo.dc.html"] },
-  { file: "Blog-DiferencaNorteNordeste.dc.html", title: "Norte e Nordeste: duas cozinhas, muitas histórias", h1: "Norte e Nordeste: duas cozinhas, muitas histórias", desc: "Mandioca, tucupi e peixes de rio no Norte; dendê, coco e carne-de-sol no Nordeste. Entenda as diferenças e o que as duas cozinhas compartilham.", eyebrow: "CADERNO · CULTURA À MESA", minutes: 4, tools: [], recipes: ["Receita-PatoNoTucupi.dc.html", "Receita-Tacaca.dc.html", "Receita-BaiaoDeDois.dc.html", "receita-bolo-de-milho.html"] },
+  { file: "blog-guia-temperos.html", title: "Guia de temperos de cada região do Brasil", h1: "Guia de temperos de cada região do Brasil", desc: "Tucupi, jambu, dendê, pequi, queijo minas e erva-mate: conheça os temperos e ingredientes que dão identidade às cozinhas de cada região do Brasil.", eyebrow: "CADERNO · CULTURA & INGREDIENTES", minutes: 4, tools: ["ferramenta-substituicao-de-ingredientes.html"], recipes: ["receita-tacaca.html", "receita-acaraje.html", "receita-arroz-com-pequi.html", "receita-pao-de-queijo.html"] },
+  { file: "blog-diferenca-norte-nordeste.html", title: "Norte e Nordeste: duas cozinhas, muitas histórias", h1: "Norte e Nordeste: duas cozinhas, muitas histórias", desc: "Mandioca, tucupi e peixes de rio no Norte; dendê, coco e carne-de-sol no Nordeste. Entenda as diferenças e o que as duas cozinhas compartilham.", eyebrow: "CADERNO · CULTURA À MESA", minutes: 4, tools: [], recipes: ["receita-pato-no-tucupi.html", "receita-tacaca.html", "receita-baiao-de-dois.html", "receita-bolo-de-milho.html"] },
 ];
 const oldBodies = {};
 for (const a of OLD_ARTICLES) {
@@ -310,7 +334,7 @@ for (const a of OLD_ARTICLES) {
   let core = body;
   const h1 = core.indexOf("</h1>");
   if (h1 >= 0) core = core.slice(h1 + 5);
-  core = core.replace(/<p class="lead">[\s\S]*?<\/p>|<p class="byline">[\s\S]*?<\/p>|<figure class="hero-figure">[\s\S]*?<\/figure>|<aside class="tool-links">[\s\S]*?<\/aside>|<p class="small muted article-note">[\s\S]*?<\/p>|<a class="button-outline" href="Blog\.dc\.html">[\s\S]*?<\/a>/g, "");
+  core = core.replace(/<p class="lead">[\s\S]*?<\/p>|<p class="byline">[\s\S]*?<\/p>|<figure class="hero-figure">[\s\S]*?<\/figure>|<aside class="tool-links">[\s\S]*?<\/aside>|<p class="small muted article-note">[\s\S]*?<\/p>|<a class="button-outline" href="blog\.html">[\s\S]*?<\/a>/g, "");
   oldBodies[a.file] = core.trim();
   write(a.file, articleShell(a, oldBodies[a.file], { file: a.file }));
 }
@@ -324,9 +348,9 @@ function storyCard(a) {
   return `<a class="story-card" href="${a.file}"><img src="${esc(im.src)}" srcset="${esc(im.srcset)}" sizes="(max-width: 700px) 100vw, 30vw" alt="${esc(im.alt)}" width="500" height="340" loading="lazy" decoding="async" onerror="this.remove()"><div><span class="eyebrow">${esc(a.eyebrow)}</span><h3>${esc(a.h1)}</h3><span class="text-link">Ler guia ↗</span></div></a>`;
 }
 write(
-  "Blog.dc.html",
+  "blog.html",
   page(
-    head({ title: "Caderno de cozinha: guias, técnicas e histórias", desc: "Guias práticos de air fryer, conservação de alimentos, medidas, churrasco e marmitas, além de histórias e ingredientes da culinária brasileira.", file: "Blog.dc.html", image: absoluteImage(ARTICLES[0].file, BASE) }),
+    head({ title: "Caderno de cozinha: guias, técnicas e histórias", desc: "Guias práticos de air fryer, conservação de alimentos, medidas, churrasco e marmitas, além de histórias e ingredientes da culinária brasileira.", file: "blog.html", image: absoluteImage(ARTICLES[0].file, BASE) }),
     `<section class="page-intro container"><span class="eyebrow">O CADERNO DO CLUBE</span><h1>Guias e histórias que dão sabor.</h1><p>Respostas para as dúvidas mais pesquisadas da cozinha — tempos, medidas, conservação e economia — e as histórias por trás dos ingredientes.</p></section><section class="container section story-grid story-grid-3">${ALL_ARTICLES.map(storyCard).join("")}</section>`,
   ),
 );
@@ -342,20 +366,50 @@ const recipesIndex = ALL.map((r) => ({
 write("assets/recipes-index.js", `window.CLUBE_RECIPES=${json(recipesIndex)};\n`);
 write("assets/tips.js", `window.CLUBE_TIPS=${json(TIPS)};\n`);
 
+// Dados das ferramentas lidos de assets/tools.js, para que as tabelas também existam no HTML
+// estático (o JavaScript substitui o conteúdo ao filtrar).
+const TOOL_DATA = (() => {
+  const src = read("assets/tools.js");
+  const grab = (name) => Function(`"use strict"; return ${new RegExp(`const ${name} = ([\\s\\S]*?\\n  [\\]}]);`).exec(src)[1]}`)();
+  return { SUBS: grab("SUBS"), COOK: grab("COOK"), SHELF: grab("SHELF"), MEAT: grab("MEAT"), DENS: grab("DENS") };
+})();
+const num = (n, d) => new Intl.NumberFormat("pt-BR", { maximumFractionDigits: d }).format(n);
+const dataTable = (head, rows) => `<div class="table-wrap"><table class="data-table"><thead><tr>${head.map((h) => `<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+const TOOL_PREFILL = {
+  "ferramenta-substituicao-de-ingredientes.html": ['<div id="sub-results" aria-live="polite">', () => dataTable(["Ingrediente", "Substitua por", "Funciona em"], TOOL_DATA.SUBS)],
+  "ferramenta-tempo-de-cozimento.html": ['<div id="ct-table">', () => dataTable(["Alimento", "Tempo"], TOOL_DATA.COOK.map((r) => [r[1], r[2]]))],
+  "ferramenta-validade-dos-alimentos.html": ['<div id="sh-table">', () => dataTable(["Alimento", "Temperatura ambiente", "Geladeira (≤ 5 °C)", "Freezer (−18 °C)"], TOOL_DATA.SHELF.map((r) => r.slice(1)))],
+  "ferramenta-ponto-da-carne.html": ['<div id="mt-table" aria-live="polite">', () => Object.entries(TOOL_DATA.MEAT).map(([k, rows]) => `<h3>${esc(k)}</h3>${dataTable(["Ponto", "Temperatura interna", "Como fica"], rows)}`).join("")],
+};
+const TOOL_TABLES = {
+  "ferramenta-conversor-de-medidas.html": () => `<h2>Tabela de conversão dos ${Object.keys(TOOL_DATA.DENS).length} ingredientes</h2>${dataTable(["Ingrediente", "1 xícara (240 ml)", "1 copo americano (190 ml)", "1 colher de sopa", "1 colher de chá"], Object.entries(TOOL_DATA.DENS).map(([i, d]) => [i, num(240 * d, 0) + " g", num(190 * d, 0) + " g", num(15 * d, 1) + " g", num(5 * d, 1) + " g"]))}`,
+};
+function toolWidget(t) {
+  const pre = TOOL_PREFILL[t.file];
+  if (!pre) return t.widget;
+  if (t.widget.split(pre[0] + "</div>").length !== 2) throw Error(`${t.file}: contêiner ${pre[0]} não encontrado`);
+  return t.widget.replace(pre[0] + "</div>", pre[0] + pre[1]() + "</div>");
+}
+function toolContent(t, x) {
+  return `<div class="prose tool-content"><h2>Para que serve</h2><p>${esc(x.intro)}</p><h2>Como usar</h2><ol class="prose-list">${x.howto.map((h) => `<li>${esc(h)}</li>`).join("")}</ol><h2>Exemplos</h2>${x.examples}${t.content}${TOOL_TABLES[t.file] ? TOOL_TABLES[t.file]() : ""}<h2>Perguntas frequentes</h2>${faqBlock(x.faqs)}</div>`;
+}
 for (const t of TOOLS) {
+  const x = TOOLS_EXTRA[t.file];
+  if (!x) throw Error(`scripts/content/tools-extra.cjs: falta conteúdo para ${t.file}`);
+  for (const f of x.recipes) if (!byFile[f]) throw Error(`${t.file}: receita inexistente ${f}`);
   const appLD = { "@context": "https://schema.org", "@type": "WebApplication", name: t.name, description: t.desc, url: BASE + t.file, applicationCategory: "LifestyleApplication", operatingSystem: "Todos", inLanguage: "pt-BR", offers: { "@type": "Offer", price: "0", priceCurrency: "BRL" } };
   const others = TOOLS.filter((x) => x.file !== t.file).slice(0, 12);
-  const h = head({ title: t.title, desc: t.desc, file: t.file, image: BASE + "public/images/institucional/ferramentas-bg.webp", scripts: [`assets/recipes-index.js?v=${VERSION}`, `assets/tools.js?v=${VERSION}`], extra: ld([appLD, breadcrumbLD([["Início", "index.html"], ["Ferramentas", "Ferramentas.dc.html"], [t.name, t.file]])]) });
-  const main = `${crumbs([["Início", "index.html"], ["Ferramentas", "Ferramentas.dc.html"], [t.name, t.file]])}<section class="page-intro container tool-intro"><span class="eyebrow">FERRAMENTA GRATUITA · SEM CADASTRO</span><h1>${esc(t.title)}</h1><p>${esc(t.lead)}</p></section><section class="container tool-page">${t.widget}<div class="prose tool-content">${t.content}</div></section><section class="container section"><div class="section-heading"><div><span class="eyebrow">OUTRAS FERRAMENTAS</span><h2>Mais ajuda na cozinha.</h2></div><a class="text-link" href="Ferramentas.dc.html">Ver todas ↗</a></div><div class="tool-grid tool-grid-small">${others.map(toolCard).join("")}</div></section>`;
+  const h = head({ title: t.title, desc: t.desc, file: t.file, image: BASE + "public/images/institucional/ferramentas-bg.webp", scripts: [`assets/recipes-index.js?v=${VERSION}`, `assets/tools.js?v=${VERSION}`], extra: ld([appLD, breadcrumbLD([["Início", "/"], ["Ferramentas", "ferramentas.html"], [t.name, t.file]]), faqLD(x.faqs)]) });
+  const main = `${crumbs([["Início", "/"], ["Ferramentas", "ferramentas.html"], [t.name, t.file]])}<section class="page-intro container tool-intro"><span class="eyebrow">FERRAMENTA GRATUITA · SEM CADASTRO</span><h1>${esc(t.title)}</h1><p>${esc(t.lead)}</p></section><section class="container tool-page">${toolWidget(t)}${toolContent(t, x)}</section>${relatedRecipes(x.recipes.slice(0, 4), "Receitas para usar com esta ferramenta")}<section class="container section"><div class="section-heading"><div><span class="eyebrow">OUTRAS FERRAMENTAS</span><h2>Mais ajuda na cozinha.</h2></div><a class="text-link" href="ferramentas.html">Ver todas ↗</a></div><div class="tool-grid tool-grid-small">${others.map(toolCard).join("")}</div></section>`;
   write(t.file, page(h, main));
 }
 function toolCard(t) {
   return `<a class="tool-card" href="${t.file}"><span class="tool-icon" aria-hidden="true">${t.icon}</span><h3>${esc(t.name)}</h3><p>${esc(t.lead)}</p><span class="text-link">Abrir ↗</span></a>`;
 }
 write(
-  "Ferramentas.dc.html",
+  "ferramentas.html",
   page(
-    head({ title: "Ferramentas de cozinha online e grátis", desc: "13 ferramentas de cozinha grátis: conversor de medidas, calculadora de churrasco e de festa, timer, lista de compras, validade dos alimentos, cardápio semanal e mais.", file: "Ferramentas.dc.html", image: BASE + "public/images/institucional/ferramentas-bg.webp", extra: ld({ "@context": "https://schema.org", "@type": "ItemList", itemListElement: TOOLS.map((t, i) => ({ "@type": "ListItem", position: i + 1, url: BASE + t.file, name: t.name })) }) }),
+    head({ title: "Ferramentas de cozinha online e grátis", desc: "13 ferramentas de cozinha grátis: conversor de medidas, calculadora de churrasco e de festa, timer, lista de compras, validade dos alimentos, cardápio semanal e mais.", file: "ferramentas.html", image: BASE + "public/images/institucional/ferramentas-bg.webp", extra: ld({ "@context": "https://schema.org", "@type": "ItemList", itemListElement: TOOLS.map((t, i) => ({ "@type": "ListItem", position: i + 1, url: BASE + t.file, name: t.name })) }) }),
     `<section class="page-intro container"><span class="eyebrow">SEU AJUDANTE NA BANCADA</span><h1>Ferramentas que facilitam a cozinha.</h1><p>Calcule, converta, planeje e organize. Todas gratuitas, sem cadastro e funcionando direto no navegador — inclusive no celular.</p></section><section class="container"><div class="editorial-photo"><img src="public/images/institucional/ferramentas-bg.webp" srcset="public/images/institucional/ferramentas-bg-small.webp 640w, public/images/institucional/ferramentas-bg.webp 1280w" sizes="(max-width: 700px) 100vw, 90vw" alt="Utensílios de cozinha em cima de um pano de linho" loading="lazy" decoding="async"></div></section><section class="container section"><div class="tool-grid">${TOOLS.map(toolCard).join("")}</div></section><section class="container section prose"><h2>Guias para usar junto</h2><p>As ferramentas ficam ainda mais úteis com os guias do caderno: <a href="tabela-de-medidas-caseiras.html">tabela de medidas caseiras</a>, <a href="air-fryer-tempo-e-temperatura.html">tempo e temperatura na air fryer</a>, <a href="quanto-de-carne-por-pessoa-churrasco.html">quanto de carne por pessoa</a> e <a href="quanto-tempo-dura-na-geladeira.html">quanto tempo dura cada alimento na geladeira</a>.</p></section>`,
   ),
 );
@@ -366,17 +420,17 @@ write(
 {
   const groups = {};
   TIPS.forEach(([c, t]) => (groups[c] ||= []).push(t));
-  const main = `${crumbs([["Início", "index.html"], ["Dicas de cozinha", "dicas-de-cozinha.html"]])}<article class="container prose article"><span class="eyebrow">PARA O DIA A DIA</span><h1>${TIPS.length} dicas de cozinha para o dia a dia</h1><p class="lead">Truques simples para economizar, organizar a rotina, cozinhar com mais segurança e acertar o ponto — reunidos em um só lugar.</p>${heroFigure("dicas-de-cozinha.html", { eager: true })}<div class="tip-day" id="tip-of-day"><span class="eyebrow">DICA DO DIA · <span data-tip-cat></span></span><p data-tip-text></p><button class="plain-button" data-tip-next>Outra dica →</button></div>${Object.entries(groups).map(([c, list]) => `<h2>${esc(c)}</h2><ul class="check-list">${list.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>`).join("")}${toolLinks(["ferramenta-validade-dos-alimentos.html", "ferramenta-substituicao-de-ingredientes.html", "ferramenta-timer-de-cozinha.html", "ferramenta-lista-de-compras.html"])}</article>${relatedRecipes(["receita-pao-caseiro.html", "receita-estrogonofe-de-carne.html", "Receita-PaoDeQueijo.dc.html", "receita-bolo-de-cenoura.html"])}`;
+  const main = `${crumbs([["Início", "/"], ["Dicas de cozinha", "dicas-de-cozinha.html"]])}<article class="container prose article"><span class="eyebrow">PARA O DIA A DIA</span><h1>${TIPS.length} dicas de cozinha para o dia a dia</h1><p class="lead">Truques simples para economizar, organizar a rotina, cozinhar com mais segurança e acertar o ponto — reunidos em um só lugar.</p>${heroFigure("dicas-de-cozinha.html", { eager: true })}<div class="tip-day" id="tip-of-day"><span class="eyebrow">DICA DO DIA · <span data-tip-cat></span></span><p data-tip-text></p><button class="plain-button" data-tip-next>Outra dica →</button></div>${Object.entries(groups).map(([c, list]) => `<h2>${esc(c)}</h2><ul class="check-list">${list.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>`).join("")}${toolLinks(["ferramenta-validade-dos-alimentos.html", "ferramenta-substituicao-de-ingredientes.html", "ferramenta-timer-de-cozinha.html", "ferramenta-lista-de-compras.html"])}</article>${relatedRecipes(["receita-pao-caseiro.html", "receita-estrogonofe-de-carne.html", "receita-pao-de-queijo.html", "receita-bolo-de-cenoura.html"])}`;
   write("dicas-de-cozinha.html", page(head({ title: "Dicas de cozinha para o dia a dia: truques que funcionam", desc: `${TIPS.length} dicas de cozinha para economizar, organizar a rotina, acertar o ponto e cozinhar com segurança. Truques simples e testados para o dia a dia.`, file: "dicas-de-cozinha.html", image: absoluteImage("dicas-de-cozinha.html", BASE), scripts: [`assets/tips.js?v=${VERSION}`] }), main));
 }
 {
-  const linkName = (f) => byFile[f]?.title || TOOLS.find((t) => t.file === f)?.name || ALL_ARTICLES.find((a) => a.file === f)?.h1 || (f.startsWith("Regiao-") ? "Receitas do " + f.slice(6, -8) : f);
-  const main = `${crumbs([["Início", "index.html"], ["Ideias de cardápio", "ideias-de-cardapio.html"]])}<section class="page-intro container"><span class="eyebrow">INSPIRAÇÃO PARA CADA OCASIÃO</span><h1>Ideias de cardápio para cada ocasião.</h1><p>Combinações prontas para o almoço de domingo, festas, dias corridos e viagens gastronômicas sem sair de casa.</p></section><section class="container">${heroFigure("ideias-de-cardapio.html")}</section><section class="container section idea-grid">${IDEAS.map((i) => `<div class="idea-card"><h2>${esc(i.title)}</h2><p>${esc(i.text)}</p><ul>${i.links.map((f) => `<li><a href="${f}">${esc(linkName(f))}</a></li>`).join("")}</ul></div>`).join("")}</section><section class="container section"><div class="tools-banner"><div><span class="eyebrow">PLANEJE A SEMANA</span><h2>Monte seu cardápio em 1 minuto.</h2><p>Escolha almoço e jantar e gere a lista de compras automaticamente.</p></div><a class="button button-light" href="ferramenta-cardapio-semanal.html">Abrir o cardápio semanal ↗</a></div></section>`;
+  const linkName = (f) => byFile[f]?.title || TOOLS.find((t) => t.file === f)?.name || ALL_ARTICLES.find((a) => a.file === f)?.h1 || (REGION_NAMES[f] ? "Receitas do " + REGION_NAMES[f] : f);
+  const main = `${crumbs([["Início", "/"], ["Ideias de cardápio", "ideias-de-cardapio.html"]])}<section class="page-intro container"><span class="eyebrow">INSPIRAÇÃO PARA CADA OCASIÃO</span><h1>Ideias de cardápio para cada ocasião.</h1><p>Combinações prontas para o almoço de domingo, festas, dias corridos e viagens gastronômicas sem sair de casa.</p></section><section class="container">${heroFigure("ideias-de-cardapio.html")}</section><section class="container section idea-grid">${IDEAS.map((i) => `<div class="idea-card"><h2>${esc(i.title)}</h2><p>${esc(i.text)}</p><ul>${i.links.map((f) => `<li><a href="${f}">${esc(linkName(f))}</a></li>`).join("")}</ul></div>`).join("")}</section><section class="container section"><div class="tools-banner"><div><span class="eyebrow">PLANEJE A SEMANA</span><h2>Monte seu cardápio em 1 minuto.</h2><p>Escolha almoço e jantar e gere a lista de compras automaticamente.</p></div><a class="button button-light" href="ferramenta-cardapio-semanal.html">Abrir o cardápio semanal ↗</a></div></section>`;
   write("ideias-de-cardapio.html", page(head({ title: "Ideias de cardápio: almoço de domingo, festa, semana e mais", desc: "Ideias de cardápio prontas para almoço de domingo, aniversário, festa junina, jantar rápido, churrasco e semana organizada, com receitas e ferramentas.", file: "ideias-de-cardapio.html", image: absoluteImage("ideias-de-cardapio.html", BASE) }), main));
 }
 {
-  const popular = FRESH.concat(["Receita-Feijoada.dc.html", "Receita-PaoDeQueijo.dc.html"].map((f) => byFile[f]));
-  const main = `${crumbs([["Início", "index.html"], ["Receitas", "Receitas.html"], ["Mais buscadas", "receitas-mais-buscadas.html"]])}<section class="page-intro container"><span class="eyebrow">O QUE O BRASIL QUER COZINHAR</span><h1>As receitas mais buscadas do Brasil.</h1><p>Bolos caseiros, docinhos de festa, clássicos de domingo e o que mais se faz na air fryer: reunimos as receitas que os brasileiros mais procuram, com passo a passo, dicas e tabela de porções.</p></section><section class="container section">${grid(popular)}</section><section class="container section prose"><h2>Por que essas receitas?</h2><p>Na retrospectiva de buscas do Google no Brasil em 2025, as receitas feitas na air fryer ocuparam boa parte do ranking — batata frita, pudim, bolo e pastel entre elas — ao lado de doces virais e caseiros. Bolo de milho, bolo de cenoura, brigadeiro e pão de queijo aparecem ano após ano entre os favoritos. Para acertar de primeira, use também a <a href="air-fryer-tempo-e-temperatura.html">tabela da air fryer</a> e o <a href="ferramenta-conversor-de-medidas.html">conversor de medidas</a>.</p></section>`;
+  const popular = FRESH.concat(["receita-feijoada.html", "receita-pao-de-queijo.html"].map((f) => byFile[f]));
+  const main = `${crumbs([["Início", "/"], ["Receitas", "receitas.html"], ["Mais buscadas", "receitas-mais-buscadas.html"]])}<section class="page-intro container"><span class="eyebrow">O QUE O BRASIL QUER COZINHAR</span><h1>As receitas mais buscadas do Brasil.</h1><p>Bolos caseiros, docinhos de festa, clássicos de domingo e o que mais se faz na air fryer: reunimos as receitas que os brasileiros mais procuram, com passo a passo, dicas e tabela de porções.</p></section><section class="container section">${grid(popular)}</section><section class="container section prose"><h2>Por que essas receitas?</h2><p>Na retrospectiva de buscas do Google no Brasil em 2025, as receitas feitas na air fryer ocuparam boa parte do ranking — batata frita, pudim, bolo e pastel entre elas — ao lado de doces virais e caseiros. Bolo de milho, bolo de cenoura, brigadeiro e pão de queijo aparecem ano após ano entre os favoritos. Para acertar de primeira, use também a <a href="air-fryer-tempo-e-temperatura.html">tabela da air fryer</a> e o <a href="ferramenta-conversor-de-medidas.html">conversor de medidas</a>.</p></section>`;
   write("receitas-mais-buscadas.html", page(head({ title: "Receitas mais buscadas do Brasil: bolo, brigadeiro, pudim e mais", desc: "As receitas que os brasileiros mais procuram: bolo de cenoura, brigadeiro, pudim, bolo de milho, coxinha, lasanha, estrogonofe, pão caseiro e batata na air fryer.", file: "receitas-mais-buscadas.html", image: absoluteImage("receita-bolo-de-cenoura.html", BASE), extra: ld({ "@context": "https://schema.org", "@type": "ItemList", itemListElement: popular.map((r, i) => ({ "@type": "ListItem", position: i + 1, url: BASE + r.file })) }) }), main));
 }
 {
@@ -384,7 +438,7 @@ write(
     .filter(([, im]) => im.type === "commons")
     .map(([k, im]) => `<tr><td><a href="${k}">${esc(byFile[k]?.title || ALL_ARTICLES.find((a) => a.file === k)?.h1 || k)}</a></td><td>${esc(im.author)}</td><td>${esc(im.license)}</td><td><a href="${commonsPage(im.file)}" rel="noopener" target="_blank">${esc(im.file)}</a></td></tr>`)
     .join("");
-  const main = `<article class="container prose"><span class="eyebrow">TRANSPARÊNCIA</span><h1>Créditos das imagens</h1><p>As fotografias do Clube da Receita são imagens reais com licenças livres. As fotos abaixo vêm do Wikimedia Commons e são exibidas a partir do próprio Commons, com autoria e licença indicadas. As demais fotos são de bancos de imagens gratuitos (Unsplash e Pixabay), cujas licenças permitem uso sem atribuição obrigatória.</p><div class="table-wrap"><table class="data-table"><thead><tr><th>Conteúdo</th><th>Autor</th><th>Licença</th><th>Arquivo original</th></tr></thead><tbody>${rows}</tbody></table></div><p class="small">Imagens CC BY e CC BY-SA podem ser reutilizadas desde que se dê o crédito ao autor e se indique a licença. Se você é autor de alguma foto e deseja ajustar o crédito, <a href="Contato.dc.html">fale com a gente</a>.</p></article>`;
+  const main = `<article class="container prose"><span class="eyebrow">TRANSPARÊNCIA</span><h1>Créditos das imagens</h1><p>As fotografias do Clube da Receita são imagens reais com licenças livres. As fotos abaixo vêm do Wikimedia Commons e são exibidas a partir do próprio Commons, com autoria e licença indicadas. As demais fotos são de bancos de imagens gratuitos (Unsplash e Pixabay), cujas licenças permitem uso sem atribuição obrigatória.</p><div class="table-wrap"><table class="data-table"><thead><tr><th>Conteúdo</th><th>Autor</th><th>Licença</th><th>Arquivo original</th></tr></thead><tbody>${rows}</tbody></table></div><p class="small">Imagens CC BY e CC BY-SA podem ser reutilizadas desde que se dê o crédito ao autor e se indique a licença. Se você é autor de alguma foto e deseja ajustar o crédito, <a href="contato.html">fale com a gente</a>.</p></article>`;
   write("creditos-das-imagens.html", page(head({ title: "Créditos das imagens", desc: "Autoria e licenças das fotografias usadas no Clube da Receita.", file: "creditos-das-imagens.html", image: BASE + "public/images/institucional/hero-home.webp" }), main));
 }
 
@@ -402,39 +456,39 @@ function listingPage(file, list, { title, desc, intro } = {}) {
   if (intro) html = html.replace(/(<section class="page-intro container">[\s\S]*?<h1>[\s\S]*?<\/h1>)<p>[\s\S]*?<\/p>/, `$1<p>${intro}</p>`);
   write(file, html);
 }
-listingPage("Receitas.html", ALL, {
+listingPage("receitas.html", ALL, {
   title: "Receitas fáceis e testadas: brasileiras e do mundo",
   desc: `${ALL.length} receitas com passo a passo, fotos, ajuste de porções e modo cozinha: bolos, doces, pratos brasileiros, clássicos do mundo e receitas na air fryer.`,
   intro: `Encontre receitas por nome, ingrediente ou origem, filtre por categoria e veja as <a href="receitas-mais-buscadas.html">mais buscadas do Brasil</a>.`,
 });
-listingPage("Favoritos.html", ALL);
-listingPage("Busca-Geladeira.dc.html", ALL);
-const REGION = { "Regiao-Norte.dc.html": "NORTE", "Regiao-Nordeste.dc.html": "NORDESTE", "Regiao-Sul.dc.html": "SUL", "Regiao-Sudeste.dc.html": "SUDESTE", "Regiao-CentroOeste.dc.html": "CENTRO-OESTE" };
+listingPage("favoritos.html", ALL);
+listingPage("busca-geladeira.html", ALL);
+const REGION = { "regiao-norte.html": "NORTE", "regiao-nordeste.html": "NORDESTE", "regiao-sul.html": "SUL", "regiao-sudeste.html": "SUDESTE", "regiao-centro-oeste.html": "CENTRO-OESTE" };
 for (const [f, key] of Object.entries(REGION)) listingPage(f, ALL.filter((r) => r.region.startsWith(key)));
-listingPage("Receitas-Internacional.dc.html", ALL.filter((r) => !isBrazil(r)));
+listingPage("receitas-internacionais.html", ALL.filter((r) => !isBrazil(r)));
 
 /* ------------------------------------------------------------------ */
 /* 8. Página inicial                                                   */
 /* ------------------------------------------------------------------ */
-for (const f of ["index.html", "Home.dc.html"]) {
+for (const f of ["index.html"]) {
   let html = read(f);
   html = modernize(html, f, { desc: "Receitas brasileiras e do mundo com passo a passo e fotos, ferramentas de cozinha grátis (conversor de medidas, calculadora de churrasco, lista de compras) e dicas para o dia a dia." });
   html = html.replace(/(<span class="hero-note">[\s\S]*?<span>)\d+ receitas para explorar\./, `$1${ALL.length} receitas para explorar.`).replace(/\d+ receitas para explorar\.<br>/, `${ALL.length} receitas para explorar.<br>`);
-  const featured = ["receita-bolo-de-cenoura.html", "receita-brigadeiro.html", "receita-pudim-de-leite-condensado.html", "receita-estrogonofe-de-carne.html", "receita-lasanha-a-bolonhesa.html", "receita-coxinha-de-frango.html", "Receita-Feijoada.dc.html", "Receita-PaoDeQueijo.dc.html"].map((x) => byFile[x]);
+  const featured = ["receita-bolo-de-cenoura.html", "receita-brigadeiro.html", "receita-pudim-de-leite-condensado.html", "receita-estrogonofe-de-carne.html", "receita-lasanha-a-bolonhesa.html", "receita-coxinha-de-frango.html", "receita-feijoada.html", "receita-pao-de-queijo.html"].map((x) => byFile[x]);
   html = replaceGrid(html, featured);
   html = html.replace(/<span class="eyebrow">PARA ABRIR O APETITE<\/span><h2>[^<]*<\/h2><\/div><a class="text-link" href="Receitas\.html">[^<]*<\/a>/, `<span class="eyebrow">PARA ABRIR O APETITE</span><h2>As mais buscadas do Brasil.</h2></div><a class="text-link" href="receitas-mais-buscadas.html">Ver todas as mais buscadas ↗</a>`);
   html = html.replace(/<!--home-extra-->[\s\S]*?<!--\/home-extra-->/g, "");
   const tipBox = `<!--home-extra--><section class="container"><div class="tip-day" id="tip-of-day"><span class="eyebrow">DICA DO DIA · <span data-tip-cat></span></span><p data-tip-text></p><div class="tip-actions"><button class="plain-button" data-tip-next>Outra dica →</button><a class="text-link" href="dicas-de-cozinha.html">Todas as ${TIPS.length} dicas ↗</a></div></div></section><!--/home-extra-->`;
   html = html.replace('<section id="regioes"', tipBox + '<section id="regioes"');
-  const toolsSection = `<section class="container section tools-home"><div class="section-heading"><div><span class="eyebrow">MENOS CONTAS. MAIS COZINHA.</span><h2>Ferramentas grátis para a cozinha.</h2></div><a class="text-link" href="Ferramentas.dc.html">Todas as ${TOOLS.length} ferramentas ↗</a></div><div class="tool-grid">${["ferramenta-conversor-de-medidas.html", "ferramenta-calculadora-de-churrasco.html", "ferramenta-calculadora-de-festa.html", "ferramenta-lista-de-compras.html", "ferramenta-timer-de-cozinha.html", "ferramenta-o-que-cozinhar-hoje.html"].map((x) => toolCard(TOOLS.find((t) => t.file === x))).join("")}</div></section>`;
+  const toolsSection = `<section class="container section tools-home"><div class="section-heading"><div><span class="eyebrow">MENOS CONTAS. MAIS COZINHA.</span><h2>Ferramentas grátis para a cozinha.</h2></div><a class="text-link" href="ferramentas.html">Todas as ${TOOLS.length} ferramentas ↗</a></div><div class="tool-grid">${["ferramenta-conversor-de-medidas.html", "ferramenta-calculadora-de-churrasco.html", "ferramenta-calculadora-de-festa.html", "ferramenta-lista-de-compras.html", "ferramenta-timer-de-cozinha.html", "ferramenta-o-que-cozinhar-hoje.html"].map((x) => toolCard(TOOLS.find((t) => t.file === x))).join("")}</div></section>`;
   html = html.replace(/<section class="container (?:tools-banner|section tools-home)">[\s\S]*?<\/section>(?=<section class="container section"><div class="section-heading"><div><span class="eyebrow">ALÉM DA RECEITA)/, toolsSection);
-  const stories = ["air-fryer-tempo-e-temperatura.html", "quanto-tempo-dura-na-geladeira.html", "quanto-de-carne-por-pessoa-churrasco.html", "tabela-de-medidas-caseiras.html", "Blog-GuiaTemperos.dc.html", "Blog-DiferencaNorteNordeste.dc.html"].map((x) => ALL_ARTICLES.find((a) => a.file === x));
+  const stories = ["air-fryer-tempo-e-temperatura.html", "quanto-tempo-dura-na-geladeira.html", "quanto-de-carne-por-pessoa-churrasco.html", "tabela-de-medidas-caseiras.html", "blog-guia-temperos.html", "blog-diferenca-norte-nordeste.html"].map((x) => ALL_ARTICLES.find((a) => a.file === x));
   html = html.replace(/<div class="story-grid[^"]*">[\s\S]*?<\/div><\/section><\/main>/, `<div class="story-grid story-grid-3">${stories.map(storyCard).join("")}</div></section></main>`);
   html = html.replace(/<span class="eyebrow">ALÉM DA RECEITA<\/span><h2>[^<]*<\/h2>/, `<span class="eyebrow">ALÉM DA RECEITA</span><h2>Guias para cozinhar melhor.</h2>`);
   if (!html.includes("assets/tips.js")) html = html.replace(`<script defer src="assets/site.js?v=${VERSION}"></script>`, `<script defer src="assets/tips.js?v=${VERSION}"></script><script defer src="assets/site.js?v=${VERSION}"></script>`);
   if (f === "index.html") {
     html = html.replace(/<script type="application\/ld\+json" data-home>[\s\S]*?<\/script>/g, "");
-    html = html.replace("</head>", `<script type="application/ld+json" data-home>${json([{ "@context": "https://schema.org", "@type": "WebSite", name: "Clube da Receita", url: BASE, inLanguage: "pt-BR", potentialAction: { "@type": "SearchAction", target: BASE + "Receitas.html?q={search_term_string}", "query-input": "required name=search_term_string" } }, { "@context": "https://schema.org", "@type": "Organization", name: "Clube da Receita", url: BASE, logo: BASE + "assets/favicon.svg", email: "contato@clubedareceita.com.br" }])}</script></head>`);
+    html = html.replace("</head>", `<script type="application/ld+json" data-home>${json([{ "@context": "https://schema.org", "@type": "WebSite", name: "Clube da Receita", url: BASE, inLanguage: "pt-BR", potentialAction: { "@type": "SearchAction", target: BASE + "receitas.html?q={search_term_string}", "query-input": "required name=search_term_string" } }, { "@context": "https://schema.org", "@type": "Organization", name: "Clube da Receita", url: BASE, logo: BASE + "assets/favicon.svg", email: "contato@clubedareceita.com.br" }])}</script></head>`);
   }
   write(f, html);
 }
@@ -442,16 +496,11 @@ for (const f of ["index.html", "Home.dc.html"]) {
 /* ------------------------------------------------------------------ */
 /* 9. Demais páginas institucionais                                    */
 /* ------------------------------------------------------------------ */
-for (const f of ["Sobre.dc.html", "Contato.dc.html", "Politica-Privacidade.dc.html", "Termos-Uso.dc.html", "404.html"]) write(f, modernize(read(f), f));
+for (const f of ["sobre.html", "contato.html", "politica-de-privacidade.html", "termos-de-uso.html", "404.html"]) write(f, modernize(read(f), f));
 
 /* ------------------------------------------------------------------ */
 /* 10. Sitemap e robots                                                */
 /* ------------------------------------------------------------------ */
-const excluded = new Set(["Home.dc.html", "404.html", "Favoritos.html"]);
-const today = new Date().toISOString().slice(0, 10);
-const files = fs.readdirSync(ROOT).filter((f) => f.endsWith(".html") && !excluded.has(f)).sort();
-const priority = (f) => (f === "index.html" ? "1.0" : /^(receita-|Receita-|ferramenta-)/.test(f) ? "0.8" : "0.6");
-write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${files.map((f) => `  <url><loc>${esc(BASE + (f === "index.html" ? "" : f))}</loc><lastmod>${today}</lastmod><priority>${priority(f)}</priority></url>`).join("\n")}\n</urlset>\n`);
-write("robots.txt", `User-agent: *\nAllow: /\nDisallow: /scripts/\n\nSitemap: ${BASE}sitemap.xml\n`);
+require("./build-sitemap.cjs");
 
-console.log(`OK: ${ALL.length} receitas, ${ALL_ARTICLES.length} artigos, ${TOOLS.length} ferramentas, ${files.length} páginas no sitemap. Base: ${BASE}`);
+console.log(`OK: ${ALL.length} receitas, ${ALL_ARTICLES.length} artigos, ${TOOLS.length} ferramentas. Base: ${BASE}`);

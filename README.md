@@ -56,8 +56,8 @@ Para editar esse conteúdo, altere os arquivos em `scripts/content/` e execute `
 - `assets/tools-logic.js`: conversões, substituições, compras e temperaturas.
 - `assets/photos/`: fotografias WebP e versões menores, com registro de fontes.
 - `assets/fonts/`: fonte DM Sans local e licença OFL. Títulos em Georgia, fonte de sistema.
-- `Receita-*.dc.html`: receitas completas, editáveis diretamente.
-- `Home.dc.html`: endereço antigo preservado, com noindex e canonical para o início.
+- `receita-*.html`: receitas completas. Todos os slugs são em minúsculas, com hífens.
+- `.htaccess`: 301 das URLs antigas (`*.dc.html`, `Receitas.html`, `Favoritos.html`, `Home.dc.html`, `/index.html`) para as canônicas, e http/www → https sem www, sempre em um salto.
 - `scripts/configure-site.cjs`: configuração do endereço público.
 - `RELATORIO-DO-PROJETO.md`: decisões, validação e limites da entrega.
 
@@ -83,6 +83,6 @@ SEO técnico não garante indexação, posições, tráfego ou conversões. Auto
 
 ## Edição
 
-Mantenha os nomes dos arquivos `.dc.html` para preservar os links existentes. Apesar da extensão, todos agora são HTML padrão. Ao editar ingredientes ou etapas, atualize tanto o HTML e seu JSON-LD quanto o arquivo `assets/recipe-Nome.js`, mantendo o modo cozinha e a escala consistentes.
+As antigas URLs `.dc.html` foram renomeadas para slugs em minúsculas em outubro de 2026; os redirecionamentos ficam no `.htaccess`. Ao renomear uma página, acrescente o 301 correspondente e não crie links para `index.html` (use `/`). Ao editar ingredientes ou etapas, atualize tanto o HTML e seu JSON-LD quanto o arquivo `assets/recipe-nome.js`, mantendo o modo cozinha e a escala consistentes.
 
 O pacote limpo não inclui as cópias antigas, arquivos de protótipo, node_modules, credenciais ou dependências de desenvolvimento. Não é necessário publicar o diretório de trabalho inteiro.

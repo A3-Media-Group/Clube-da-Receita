@@ -16,7 +16,7 @@ module.exports = [
     eyebrow: "GUIA PRÁTICO · AIR FRYER",
     minutes: 7,
     tools: ["ferramenta-conversor-air-fryer-forno.html", "ferramenta-timer-de-cozinha.html"],
-    recipes: ["receita-batata-frita-na-air-fryer.html", "Receita-PaoDeQueijo.dc.html", "receita-coxinha-de-frango.html"],
+    recipes: ["receita-batata-frita-na-air-fryer.html", "receita-pao-de-queijo.html", "receita-coxinha-de-frango.html"],
     body: `
 <p>A air fryer virou o eletrodoméstico queridinho das cozinhas brasileiras: em 2025, receitas feitas nela ocuparam metade do ranking de receitas mais buscadas no Google Brasil, com batata frita, pudim, batata-doce, bolo, pastel e peixe. A lógica é simples — uma resistência aquece o ar, e um ventilador faz esse ar circular rapidamente, dourando a superfície dos alimentos como um forno de convecção compacto.</p>
 <p>Os tempos abaixo valem para aparelhos de 3 a 5 litros com o cesto preaquecido por 3 minutos. Modelos maiores ou em forma de forno podem precisar de 2 a 5 minutos a mais. Na dúvida, abra o cesto na metade do tempo e confira.</p>
@@ -77,7 +77,7 @@ ${t(["Alimento", "Temperatura", "Tempo", "Observação"], [
     eyebrow: "CONSERVAÇÃO · SEGURANÇA DOS ALIMENTOS",
     minutes: 6,
     tools: ["ferramenta-validade-dos-alimentos.html", "ferramenta-lista-de-compras.html"],
-    recipes: ["Receita-Feijoada.dc.html", "receita-estrogonofe-de-carne.html", "receita-lasanha-a-bolonhesa.html"],
+    recipes: ["receita-feijoada.html", "receita-estrogonofe-de-carne.html", "receita-lasanha-a-bolonhesa.html"],
     body: `
 <p>Saber quanto tempo cada alimento aguenta na geladeira evita dois problemas ao mesmo tempo: intoxicação alimentar e desperdício. Os prazos abaixo consideram geladeira regulada a <strong>5 °C ou menos</strong>, alimentos bem fechados e manipulados com higiene. Eles são referências seguras e conservadoras, baseadas em orientações de órgãos de segurança dos alimentos como o USDA (Departamento de Agricultura dos EUA) e em práticas recomendadas pela vigilância sanitária.</p>
 <p>Importante: as datas de validade da embalagem valem para o produto <em>fechado</em>. Depois de aberto, vale o prazo da tabela ou o indicado no rótulo ("após aberto, consumir em…").</p>
@@ -146,7 +146,7 @@ ${t(["Alimento", "Prazo"], [
     eyebrow: "CONSERVAÇÃO · FREEZER",
     minutes: 6,
     tools: ["ferramenta-validade-dos-alimentos.html", "ferramenta-cardapio-semanal.html"],
-    recipes: ["Receita-PaoDeQueijo.dc.html", "receita-coxinha-de-frango.html", "receita-pao-caseiro.html"],
+    recipes: ["receita-pao-de-queijo.html", "receita-coxinha-de-frango.html", "receita-pao-caseiro.html"],
     body: `
 <p>O freezer é o melhor aliado de quem quer economizar e ganhar tempo. No congelamento a −18 °C, os micro-organismos param de se multiplicar — eles não morrem, mas ficam "dormindo". Por isso, a qualidade do que sai do freezer depende de como o alimento entrou: fresco, bem embalado e etiquetado.</p>
 <h2>Freezer ou congelador?</h2>
@@ -201,7 +201,7 @@ ${t(["Método", "Como fazer", "Quando usar"], [
     eyebrow: "CHURRASCO · PLANEJAMENTO",
     minutes: 5,
     tools: ["ferramenta-calculadora-de-churrasco.html", "ferramenta-ponto-da-carne.html", "ferramenta-lista-de-compras.html"],
-    recipes: ["Receita-Feijoada.dc.html", "receita-pao-caseiro.html", "receita-batata-frita-na-air-fryer.html"],
+    recipes: ["receita-feijoada.html", "receita-pao-caseiro.html", "receita-batata-frita-na-air-fryer.html"],
     body: `
 <p>Não existe norma oficial, mas a conta que a maioria dos churrasqueiros usa é de <strong>400 g a 500 g de carnes por adulto</strong> em um churrasco de cerca de 4 horas com acompanhamentos. Crianças comem aproximadamente metade. Se a carne for praticamente o único alimento ou o evento for longo, suba para 600 g.</p>
 <p>Quer o cálculo pronto, com lista de compras? Use a <a href="ferramenta-calculadora-de-churrasco.html">calculadora de churrasco</a>: informe adultos, crianças e duração e ela calcula carnes, carvão, bebidas e acompanhamentos.</p>
@@ -247,7 +247,7 @@ ${t(["Item", "Por adulto", "Por criança"], [
     eyebrow: "BÁSICOS DA COZINHA",
     minutes: 6,
     tools: ["ferramenta-tempo-de-cozimento.html", "ferramenta-conversor-de-medidas.html"],
-    recipes: ["Receita-BaiaoDeDois.dc.html", "Receita-Feijoada.dc.html", "Receita-ArrozComPequi.dc.html"],
+    recipes: ["receita-baiao-de-dois.html", "receita-feijoada.html", "receita-arroz-com-pequi.html"],
     body: `
 <p>Arroz e feijão estão no prato de quase todos os brasileiros e, justamente por isso, são os primeiros pratos que todo mundo quer acertar. A boa notícia: com a proporção certa e alguns cuidados, eles saem perfeitos todos os dias.</p>
 <h2>Arroz branco soltinho</h2>
@@ -300,7 +300,7 @@ ${t(["Feijão", "Com molho (pressão)", "Sem molho (pressão)"], [
     eyebrow: "GUIA PRÁTICO · INGREDIENTES",
     minutes: 6,
     tools: ["ferramenta-substituicao-de-ingredientes.html", "ferramenta-conversor-de-medidas.html"],
-    recipes: ["receita-bolo-de-cenoura.html", "receita-bolo-de-chocolate.html", "Receita-Carbonara.dc.html"],
+    recipes: ["receita-bolo-de-cenoura.html", "receita-bolo-de-chocolate.html", "receita-carbonara.html"],
     body: `
 <p>Faltou um ingrediente no meio da receita? Na maioria dos casos dá para seguir em frente. O segredo é entender a <em>função</em> do ingrediente: ele dá estrutura, umidade, gordura, acidez ou crescimento? Escolha um substituto que cumpra o mesmo papel. Para consultar rapidamente, use a <a href="ferramenta-substituicao-de-ingredientes.html">ferramenta de substituição de ingredientes</a>.</p>
 <h2>Ovos</h2>
@@ -352,7 +352,7 @@ ${t(["Ingrediente", "Substituto", "Proporção"], [
     eyebrow: "GUIA PRÁTICO · MEDIDAS",
     minutes: 5,
     tools: ["ferramenta-conversor-de-medidas.html", "ferramenta-ajustar-receita.html"],
-    recipes: ["receita-bolo-de-cenoura.html", "receita-pao-caseiro.html", "Receita-CheesecakeNY.dc.html"],
+    recipes: ["receita-bolo-de-cenoura.html", "receita-pao-caseiro.html", "receita-cheesecake-nova-york.html"],
     body: `
 <p>A maior parte das receitas caseiras brasileiras usa medidas de volume: xícara, colher de sopa e copo americano. Mas uma xícara de farinha não pesa o mesmo que uma xícara de açúcar — cada ingrediente tem densidade diferente. Esta tabela usa a <strong>xícara padrão de 240 ml</strong>, a colher de sopa de 15 ml e a colher de chá de 5 ml, com ingredientes nivelados (sem montinho).</p>
 <p>Para converter qualquer quantidade automaticamente, use o <a href="ferramenta-conversor-de-medidas.html">conversor de medidas</a>.</p>
@@ -416,7 +416,7 @@ ${t(["Forno", "Temperatura"], [
     eyebrow: "ORGANIZAÇÃO · DIA A DIA",
     minutes: 7,
     tools: ["ferramenta-cardapio-semanal.html", "ferramenta-lista-de-compras.html", "ferramenta-validade-dos-alimentos.html"],
-    recipes: ["receita-estrogonofe-de-carne.html", "Receita-BaiaoDeDois.dc.html", "Receita-ButterChicken.dc.html"],
+    recipes: ["receita-estrogonofe-de-carne.html", "receita-baiao-de-dois.html", "receita-butter-chicken.html"],
     body: `
 <p>Preparar as refeições da semana de uma vez — o famoso <em>meal prep</em> — economiza tempo, reduz gastos com delivery e ajuda a comer melhor. Com 2 a 3 horas no domingo, dá para deixar almoços prontos de segunda a sexta.</p>
 <h2>1. Planeje o cardápio</h2>
@@ -462,7 +462,7 @@ ${t(["Dia", "Marmita"], [
     eyebrow: "BÁSICOS DA COZINHA",
     minutes: 4,
     tools: ["ferramenta-timer-de-cozinha.html", "ferramenta-tempo-de-cozimento.html"],
-    recipes: ["Receita-RamenShoyu.dc.html", "Receita-Carbonara.dc.html", "receita-pudim-de-leite-condensado.html"],
+    recipes: ["receita-ramen-shoyu.html", "receita-carbonara.html", "receita-pudim-de-leite-condensado.html"],
     body: `
 <p>"Quanto tempo cozinhar ovo" é uma das perguntas mais buscadas na cozinha — e com razão: 2 minutos de diferença transformam uma gema líquida em uma gema esfarelada e esverdeada. Os tempos abaixo são para <strong>ovos grandes, saídos da geladeira e colocados em água já fervendo</strong>.</p>
 <p>Use nosso <a href="ferramenta-timer-de-cozinha.html">timer de cozinha</a> com os atalhos de ovo para não errar.</p>
@@ -506,7 +506,7 @@ ${t(["Preparo", "Como fazer"], [
     eyebrow: "FEIRA · ECONOMIA",
     minutes: 5,
     tools: ["ferramenta-lista-de-compras.html", "ferramenta-o-que-cozinhar-hoje.html"],
-    recipes: ["Receita-ArrozComPequi.dc.html", "receita-bolo-de-milho.html", "receita-bolo-de-cenoura.html"],
+    recipes: ["receita-arroz-com-pequi.html", "receita-bolo-de-milho.html", "receita-bolo-de-cenoura.html"],
     body: `
 <p>Comprar alimentos da estação é a forma mais simples de economizar na feira. Na safra, a oferta é maior, o preço cai e o sabor é melhor, porque o produto é colhido no ponto certo e viaja menos. O calendário abaixo é uma referência geral para o Brasil, baseada nos períodos de maior oferta nas centrais de abastecimento; ele pode variar por região e pelo clima de cada ano.</p>
 <h2>Calendário de safra</h2>

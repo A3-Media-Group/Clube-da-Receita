@@ -47,7 +47,7 @@ const IDEAS = [
   {
     title: "Almoço de domingo em família",
     text: "Feijoada ou lasanha como prato principal, salada verde com laranja e pudim de sobremesa.",
-    links: ["Receita-Feijoada.dc.html", "receita-lasanha-a-bolonhesa.html", "receita-pudim-de-leite-condensado.html"],
+    links: ["receita-feijoada.html", "receita-lasanha-a-bolonhesa.html", "receita-pudim-de-leite-condensado.html"],
   },
   {
     title: "Festa de aniversário em casa",
@@ -57,22 +57,22 @@ const IDEAS = [
   {
     title: "Arraiá e festa junina",
     text: "Bolo de milho, pão de queijo e baião de dois para quem quer algo salgado e bem brasileiro.",
-    links: ["receita-bolo-de-milho.html", "Receita-PaoDeQueijo.dc.html", "Receita-BaiaoDeDois.dc.html"],
+    links: ["receita-bolo-de-milho.html", "receita-pao-de-queijo.html", "receita-baiao-de-dois.html"],
   },
   {
     title: "Jantar rápido de semana (até 30 minutos)",
     text: "Carbonara, pad thai ou estrogonofe com arroz já pronto da marmita.",
-    links: ["Receita-Carbonara.dc.html", "Receita-PadThai.dc.html", "receita-estrogonofe-de-carne.html"],
+    links: ["receita-carbonara.html", "receita-pad-thai.html", "receita-estrogonofe-de-carne.html"],
   },
   {
     title: "Café da tarde com cheirinho de casa",
     text: "Bolo de cenoura com cobertura, pão caseiro quentinho e pão de queijo.",
-    links: ["receita-bolo-de-cenoura.html", "receita-pao-caseiro.html", "Receita-PaoDeQueijo.dc.html"],
+    links: ["receita-bolo-de-cenoura.html", "receita-pao-caseiro.html", "receita-pao-de-queijo.html"],
   },
   {
     title: "Noite de volta ao mundo",
     text: "Monte um menu temático: ceviche de entrada, tacos al pastor e crêpes Suzette.",
-    links: ["Receita-CevicheClassico.dc.html", "Receita-TacosAlPastor.dc.html", "Receita-CrepesSuzette.dc.html"],
+    links: ["receita-ceviche-classico.html", "receita-tacos-al-pastor.html", "receita-crepes-suzette.html"],
   },
   {
     title: "Churrasco com os amigos",
@@ -82,7 +82,7 @@ const IDEAS = [
   {
     title: "Sabores do Norte",
     text: "Tacacá no fim de tarde e pato no tucupi para uma ocasião especial.",
-    links: ["Receita-Tacaca.dc.html", "Receita-PatoNoTucupi.dc.html", "Regiao-Norte.dc.html"],
+    links: ["receita-tacaca.html", "receita-pato-no-tucupi.html", "regiao-norte.html"],
   },
   {
     title: "Air fryer na rotina",

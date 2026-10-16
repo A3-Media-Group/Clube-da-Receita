@@ -20,6 +20,12 @@ const storage = {
 };
 let saved = storage.get("clube-favorites", []);
 if (!Array.isArray(saved)) saved = [];
+// Favoritos salvos antes da troca para URLs em minúsculas.
+const LEGACY_FILES = {"Receita-Acaraje.dc.html": "receita-acaraje.html", "Receita-ArrozComPequi.dc.html": "receita-arroz-com-pequi.html", "Receita-BaiaoDeDois.dc.html": "receita-baiao-de-dois.html", "Receita-Barreado.dc.html": "receita-barreado.html", "Receita-ButterChicken.dc.html": "receita-butter-chicken.html", "Receita-Carbonara.dc.html": "receita-carbonara.html", "Receita-CevicheClassico.dc.html": "receita-ceviche-classico.html", "Receita-CheesecakeNY.dc.html": "receita-cheesecake-nova-york.html", "Receita-CoqAuVin.dc.html": "receita-coq-au-vin.html", "Receita-CrepesSuzette.dc.html": "receita-crepes-suzette.html", "Receita-Feijoada.dc.html": "receita-feijoada.html", "Receita-PadThai.dc.html": "receita-pad-thai.html", "Receita-PaellaValenciana.dc.html": "receita-paella-valenciana.html", "Receita-PaoDeQueijo.dc.html": "receita-pao-de-queijo.html", "Receita-PatoNoTucupi.dc.html": "receita-pato-no-tucupi.html", "Receita-PizzaMargherita.dc.html": "receita-pizza-margherita.html", "Receita-RamenShoyu.dc.html": "receita-ramen-shoyu.html", "Receita-Tacaca.dc.html": "receita-tacaca.html", "Receita-TacosAlPastor.dc.html": "receita-tacos-al-pastor.html", "Receita-TagineCordeiro.dc.html": "receita-tagine-de-cordeiro.html"};
+if (saved.some((f) => LEGACY_FILES[f])) {
+  saved = [...new Set(saved.map((f) => LEGACY_FILES[f] || f))];
+  storage.set("clube-favorites", saved);
+}
 const normalize = (s) =>
   String(s)
     .normalize("NFD")

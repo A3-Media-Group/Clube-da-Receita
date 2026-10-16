@@ -1,0 +1,59 @@
+# Clube da Receita — regras do servidor (Hostinger: LiteSpeed/Apache).
+# Cada URL antiga vai direto para a canônica (https, sem www) em um único 301.
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# 1) URLs antigas (.dc.html e com maiúsculas) -> slugs canônicos em minúsculas
+RewriteRule ^Blog\.dc\.html$ https://clubedareceita.com.br/blog.html [R=301,L]
+RewriteRule ^Blog-DiferencaNorteNordeste\.dc\.html$ https://clubedareceita.com.br/blog-diferenca-norte-nordeste.html [R=301,L]
+RewriteRule ^Blog-GuiaTemperos\.dc\.html$ https://clubedareceita.com.br/blog-guia-temperos.html [R=301,L]
+RewriteRule ^Busca-Geladeira\.dc\.html$ https://clubedareceita.com.br/busca-geladeira.html [R=301,L]
+RewriteRule ^Contato\.dc\.html$ https://clubedareceita.com.br/contato.html [R=301,L]
+RewriteRule ^Favoritos\.html$ https://clubedareceita.com.br/favoritos.html [R=301,L]
+RewriteRule ^Ferramentas\.dc\.html$ https://clubedareceita.com.br/ferramentas.html [R=301,L]
+RewriteRule ^Politica-Privacidade\.dc\.html$ https://clubedareceita.com.br/politica-de-privacidade.html [R=301,L]
+RewriteRule ^Receita-Acaraje\.dc\.html$ https://clubedareceita.com.br/receita-acaraje.html [R=301,L]
+RewriteRule ^Receita-ArrozComPequi\.dc\.html$ https://clubedareceita.com.br/receita-arroz-com-pequi.html [R=301,L]
+RewriteRule ^Receita-BaiaoDeDois\.dc\.html$ https://clubedareceita.com.br/receita-baiao-de-dois.html [R=301,L]
+RewriteRule ^Receita-Barreado\.dc\.html$ https://clubedareceita.com.br/receita-barreado.html [R=301,L]
+RewriteRule ^Receita-ButterChicken\.dc\.html$ https://clubedareceita.com.br/receita-butter-chicken.html [R=301,L]
+RewriteRule ^Receita-Carbonara\.dc\.html$ https://clubedareceita.com.br/receita-carbonara.html [R=301,L]
+RewriteRule ^Receita-CevicheClassico\.dc\.html$ https://clubedareceita.com.br/receita-ceviche-classico.html [R=301,L]
+RewriteRule ^Receita-CheesecakeNY\.dc\.html$ https://clubedareceita.com.br/receita-cheesecake-nova-york.html [R=301,L]
+RewriteRule ^Receita-CoqAuVin\.dc\.html$ https://clubedareceita.com.br/receita-coq-au-vin.html [R=301,L]
+RewriteRule ^Receita-CrepesSuzette\.dc\.html$ https://clubedareceita.com.br/receita-crepes-suzette.html [R=301,L]
+RewriteRule ^Receita-Feijoada\.dc\.html$ https://clubedareceita.com.br/receita-feijoada.html [R=301,L]
+RewriteRule ^Receita-PadThai\.dc\.html$ https://clubedareceita.com.br/receita-pad-thai.html [R=301,L]
+RewriteRule ^Receita-PaellaValenciana\.dc\.html$ https://clubedareceita.com.br/receita-paella-valenciana.html [R=301,L]
+RewriteRule ^Receita-PaoDeQueijo\.dc\.html$ https://clubedareceita.com.br/receita-pao-de-queijo.html [R=301,L]
+RewriteRule ^Receita-PatoNoTucupi\.dc\.html$ https://clubedareceita.com.br/receita-pato-no-tucupi.html [R=301,L]
+RewriteRule ^Receita-PizzaMargherita\.dc\.html$ https://clubedareceita.com.br/receita-pizza-margherita.html [R=301,L]
+RewriteRule ^Receita-RamenShoyu\.dc\.html$ https://clubedareceita.com.br/receita-ramen-shoyu.html [R=301,L]
+RewriteRule ^Receita-Tacaca\.dc\.html$ https://clubedareceita.com.br/receita-tacaca.html [R=301,L]
+RewriteRule ^Receita-TacosAlPastor\.dc\.html$ https://clubedareceita.com.br/receita-tacos-al-pastor.html [R=301,L]
+RewriteRule ^Receita-TagineCordeiro\.dc\.html$ https://clubedareceita.com.br/receita-tagine-de-cordeiro.html [R=301,L]
+RewriteRule ^Receitas-Internacional\.dc\.html$ https://clubedareceita.com.br/receitas-internacionais.html [R=301,L]
+RewriteRule ^Receitas\.html$ https://clubedareceita.com.br/receitas.html [R=301,L]
+RewriteRule ^Regiao-CentroOeste\.dc\.html$ https://clubedareceita.com.br/regiao-centro-oeste.html [R=301,L]
+RewriteRule ^Regiao-Nordeste\.dc\.html$ https://clubedareceita.com.br/regiao-nordeste.html [R=301,L]
+RewriteRule ^Regiao-Norte\.dc\.html$ https://clubedareceita.com.br/regiao-norte.html [R=301,L]
+RewriteRule ^Regiao-Sudeste\.dc\.html$ https://clubedareceita.com.br/regiao-sudeste.html [R=301,L]
+RewriteRule ^Regiao-Sul\.dc\.html$ https://clubedareceita.com.br/regiao-sul.html [R=301,L]
+RewriteRule ^Sobre\.dc\.html$ https://clubedareceita.com.br/sobre.html [R=301,L]
+RewriteRule ^Termos-Uso\.dc\.html$ https://clubedareceita.com.br/termos-de-uso.html [R=301,L]
+
+# 2) Cópia da home e /index.html -> /
+RewriteRule ^Home\.dc\.html$ https://clubedareceita.com.br/ [R=301,L]
+# THE_REQUEST evita laço com o DirectoryIndex (pedido de "/" vira index.html internamente).
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?]
+RewriteRule ^index\.html$ https://clubedareceita.com.br/ [R=301,L]
+
+# 3) http -> https e www -> sem www, em um único salto
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://clubedareceita.com.br%{REQUEST_URI} [R=301,L]
+</IfModule>
