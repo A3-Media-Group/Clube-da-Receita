@@ -11,11 +11,6 @@ const oldBase = fs.existsSync(path.join(root, "site-config.json"))
   ? JSON.parse(fs.readFileSync(path.join(root, "site-config.json"), "utf8")).url
   : null;
 const files = fs.readdirSync(root).filter((f) => f.endsWith(".html"));
-const excluded = [
-  "404.html",
-  "favoritos.html",
-  "busca-geladeira.html",
-];
 const esc = (s) =>
   s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 for (const f of files) {
@@ -37,22 +32,6 @@ for (const f of files) {
   fs.writeFileSync(path.join(root, f), html);
 }
 fs.writeFileSync(
-  path.join(root, "sitemap.xml"),
-  '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-    files
-      .filter((f) => !excluded.includes(f))
-      .map(
-        (f) =>
-          `  <url><loc>${esc(base + (f === "index.html" ? "" : f))}</loc></url>`,
-      )
-      .join("\n") +
-    "\n</urlset>\n",
-);
-fs.writeFileSync(
-  path.join(root, "robots.txt"),
-  `User-agent: *\nAllow: /\n\nSitemap: ${base}sitemap.xml\n`,
-);
-fs.writeFileSync(
   path.join(root, "site-config.json"),
   JSON.stringify(
     { url: base, email: "contato@clubedareceita.com.br" },
@@ -60,4 +39,6 @@ fs.writeFileSync(
     2,
   ),
 );
+// sitemap.xml e robots.txt são gerados a partir do novo endereço.
+require("./build-sitemap.cjs");
 console.log("SEO configurado para " + base);

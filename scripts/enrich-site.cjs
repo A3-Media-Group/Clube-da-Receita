@@ -310,7 +310,7 @@ for (const a of OLD_ARTICLES) {
   let core = body;
   const h1 = core.indexOf("</h1>");
   if (h1 >= 0) core = core.slice(h1 + 5);
-  core = core.replace(/<p class="lead">[\s\S]*?<\/p>|<p class="byline">[\s\S]*?<\/p>|<figure class="hero-figure">[\s\S]*?<\/figure>|<aside class="tool-links">[\s\S]*?<\/aside>|<p class="small muted article-note">[\s\S]*?<\/p>|<a class="button-outline" href="Blog\.dc\.html">[\s\S]*?<\/a>/g, "");
+  core = core.replace(/<p class="lead">[\s\S]*?<\/p>|<p class="byline">[\s\S]*?<\/p>|<figure class="hero-figure">[\s\S]*?<\/figure>|<aside class="tool-links">[\s\S]*?<\/aside>|<p class="small muted article-note">[\s\S]*?<\/p>|<a class="button-outline" href="blog\.html">[\s\S]*?<\/a>/g, "");
   oldBodies[a.file] = core.trim();
   write(a.file, articleShell(a, oldBodies[a.file], { file: a.file }));
 }
@@ -447,11 +447,6 @@ for (const f of ["sobre.html", "contato.html", "politica-de-privacidade.html", "
 /* ------------------------------------------------------------------ */
 /* 10. Sitemap e robots                                                */
 /* ------------------------------------------------------------------ */
-const excluded = new Set(["404.html", "favoritos.html"]);
-const today = new Date().toISOString().slice(0, 10);
-const files = fs.readdirSync(ROOT).filter((f) => f.endsWith(".html") && !excluded.has(f)).sort();
-const priority = (f) => (f === "index.html" ? "1.0" : /^(receita-|ferramenta-)/.test(f) ? "0.8" : "0.6");
-write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${files.map((f) => `  <url><loc>${esc(BASE + (f === "index.html" ? "" : f))}</loc><lastmod>${today}</lastmod><priority>${priority(f)}</priority></url>`).join("\n")}\n</urlset>\n`);
-write("robots.txt", `User-agent: *\nAllow: /\nDisallow: /scripts/\n\nSitemap: ${BASE}sitemap.xml\n`);
+require("./build-sitemap.cjs");
 
-console.log(`OK: ${ALL.length} receitas, ${ALL_ARTICLES.length} artigos, ${TOOLS.length} ferramentas, ${files.length} páginas no sitemap. Base: ${BASE}`);
+console.log(`OK: ${ALL.length} receitas, ${ALL_ARTICLES.length} artigos, ${TOOLS.length} ferramentas. Base: ${BASE}`);
