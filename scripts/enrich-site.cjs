@@ -13,6 +13,7 @@ const ARTICLES = require("./content/articles.cjs");
 const TOOLS = require("./content/tools.cjs");
 const { TIPS, IDEAS } = require("./content/tips.cjs");
 const STEP_NAMES = require("./content/step-names.cjs");
+const TOOLS_EXTRA = require("./content/tools-extra.cjs");
 
 const BASE = JSON.parse(fs.readFileSync(path.join(ROOT, "site-config.json"), "utf8")).url.replace(/\/?$/, "/");
 const VERSION = "20261016";
@@ -208,8 +209,12 @@ function stepsLD(file, steps) {
   const names = stepNames(file, steps);
   return steps.map((text, i) => ({ "@type": "HowToStep", position: i + 1, name: names[i], text, url: `${BASE}${file}#passo-${i + 1}` }));
 }
+// Ferramentas citadas em tools-extra.cjs como relacionadas a cada receita.
+const TOOLS_FOR_RECIPE = {};
+for (const [tool, x] of Object.entries(TOOLS_EXTRA)) for (const f of x.recipes) (TOOLS_FOR_RECIPE[f] ||= []).push(tool);
+const RECIPE_TOOLS = ["ferramenta-ajustar-receita.html", "ferramenta-timer-de-cozinha.html", "ferramenta-lista-de-compras.html", "ferramenta-substituicao-de-ingredientes.html"];
 function extrasSection(r, x) {
-  return `<!--extras--><section class="container recipe-extras"><div class="extras-grid"><div><span class="eyebrow">O PULO DO GATO</span><h2>Dicas para acertar</h2><ul class="check-list">${x.tips.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div><div><span class="eyebrow">DEPOIS DO PREPARO</span><h2>Como conservar</h2><p>${esc(x.conserve)}</p><p class="small"><a href="quanto-tempo-dura-na-geladeira.html">Veja quanto tempo dura cada alimento na geladeira ↗</a></p></div></div><span class="eyebrow">DÚVIDAS FREQUENTES</span><h2>Perguntas sobre ${esc(r.short || r.title)}</h2>${faqBlock(x.faqs)}${toolLinks(["ferramenta-ajustar-receita.html", "ferramenta-timer-de-cozinha.html", "ferramenta-lista-de-compras.html", "ferramenta-substituicao-de-ingredientes.html"])}</section><!--/extras-->`;
+  return `<!--extras--><section class="container recipe-extras"><div class="extras-grid"><div><span class="eyebrow">O PULO DO GATO</span><h2>Dicas para acertar</h2><ul class="check-list">${x.tips.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div><div><span class="eyebrow">DEPOIS DO PREPARO</span><h2>Como conservar</h2><p>${esc(x.conserve)}</p><p class="small"><a href="quanto-tempo-dura-na-geladeira.html">Veja quanto tempo dura cada alimento na geladeira ↗</a></p></div></div><span class="eyebrow">DÚVIDAS FREQUENTES</span><h2>Perguntas sobre ${esc(r.short || r.title)}</h2>${faqBlock(x.faqs)}${toolLinks([...new Set([...(TOOLS_FOR_RECIPE[r.file] || []), ...RECIPE_TOOLS])])}</section><!--/extras-->`;
 }
 
 /* ------------------------------------------------------------------ */
@@ -361,11 +366,41 @@ const recipesIndex = ALL.map((r) => ({
 write("assets/recipes-index.js", `window.CLUBE_RECIPES=${json(recipesIndex)};\n`);
 write("assets/tips.js", `window.CLUBE_TIPS=${json(TIPS)};\n`);
 
+// Dados das ferramentas lidos de assets/tools.js, para que as tabelas também existam no HTML
+// estático (o JavaScript substitui o conteúdo ao filtrar).
+const TOOL_DATA = (() => {
+  const src = read("assets/tools.js");
+  const grab = (name) => Function(`"use strict"; return ${new RegExp(`const ${name} = ([\\s\\S]*?\\n  [\\]}]);`).exec(src)[1]}`)();
+  return { SUBS: grab("SUBS"), COOK: grab("COOK"), SHELF: grab("SHELF"), MEAT: grab("MEAT"), DENS: grab("DENS") };
+})();
+const num = (n, d) => new Intl.NumberFormat("pt-BR", { maximumFractionDigits: d }).format(n);
+const dataTable = (head, rows) => `<div class="table-wrap"><table class="data-table"><thead><tr>${head.map((h) => `<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+const TOOL_PREFILL = {
+  "ferramenta-substituicao-de-ingredientes.html": ['<div id="sub-results" aria-live="polite">', () => dataTable(["Ingrediente", "Substitua por", "Funciona em"], TOOL_DATA.SUBS)],
+  "ferramenta-tempo-de-cozimento.html": ['<div id="ct-table">', () => dataTable(["Alimento", "Tempo"], TOOL_DATA.COOK.map((r) => [r[1], r[2]]))],
+  "ferramenta-validade-dos-alimentos.html": ['<div id="sh-table">', () => dataTable(["Alimento", "Temperatura ambiente", "Geladeira (≤ 5 °C)", "Freezer (−18 °C)"], TOOL_DATA.SHELF.map((r) => r.slice(1)))],
+  "ferramenta-ponto-da-carne.html": ['<div id="mt-table" aria-live="polite">', () => Object.entries(TOOL_DATA.MEAT).map(([k, rows]) => `<h3>${esc(k)}</h3>${dataTable(["Ponto", "Temperatura interna", "Como fica"], rows)}`).join("")],
+};
+const TOOL_TABLES = {
+  "ferramenta-conversor-de-medidas.html": () => `<h2>Tabela de conversão dos ${Object.keys(TOOL_DATA.DENS).length} ingredientes</h2>${dataTable(["Ingrediente", "1 xícara (240 ml)", "1 copo americano (190 ml)", "1 colher de sopa", "1 colher de chá"], Object.entries(TOOL_DATA.DENS).map(([i, d]) => [i, num(240 * d, 0) + " g", num(190 * d, 0) + " g", num(15 * d, 1) + " g", num(5 * d, 1) + " g"]))}`,
+};
+function toolWidget(t) {
+  const pre = TOOL_PREFILL[t.file];
+  if (!pre) return t.widget;
+  if (t.widget.split(pre[0] + "</div>").length !== 2) throw Error(`${t.file}: contêiner ${pre[0]} não encontrado`);
+  return t.widget.replace(pre[0] + "</div>", pre[0] + pre[1]() + "</div>");
+}
+function toolContent(t, x) {
+  return `<div class="prose tool-content"><h2>Para que serve</h2><p>${esc(x.intro)}</p><h2>Como usar</h2><ol class="prose-list">${x.howto.map((h) => `<li>${esc(h)}</li>`).join("")}</ol><h2>Exemplos</h2>${x.examples}${t.content}${TOOL_TABLES[t.file] ? TOOL_TABLES[t.file]() : ""}<h2>Perguntas frequentes</h2>${faqBlock(x.faqs)}</div>`;
+}
 for (const t of TOOLS) {
+  const x = TOOLS_EXTRA[t.file];
+  if (!x) throw Error(`scripts/content/tools-extra.cjs: falta conteúdo para ${t.file}`);
+  for (const f of x.recipes) if (!byFile[f]) throw Error(`${t.file}: receita inexistente ${f}`);
   const appLD = { "@context": "https://schema.org", "@type": "WebApplication", name: t.name, description: t.desc, url: BASE + t.file, applicationCategory: "LifestyleApplication", operatingSystem: "Todos", inLanguage: "pt-BR", offers: { "@type": "Offer", price: "0", priceCurrency: "BRL" } };
   const others = TOOLS.filter((x) => x.file !== t.file).slice(0, 12);
-  const h = head({ title: t.title, desc: t.desc, file: t.file, image: BASE + "public/images/institucional/ferramentas-bg.webp", scripts: [`assets/recipes-index.js?v=${VERSION}`, `assets/tools.js?v=${VERSION}`], extra: ld([appLD, breadcrumbLD([["Início", "/"], ["Ferramentas", "ferramentas.html"], [t.name, t.file]])]) });
-  const main = `${crumbs([["Início", "/"], ["Ferramentas", "ferramentas.html"], [t.name, t.file]])}<section class="page-intro container tool-intro"><span class="eyebrow">FERRAMENTA GRATUITA · SEM CADASTRO</span><h1>${esc(t.title)}</h1><p>${esc(t.lead)}</p></section><section class="container tool-page">${t.widget}<div class="prose tool-content">${t.content}</div></section><section class="container section"><div class="section-heading"><div><span class="eyebrow">OUTRAS FERRAMENTAS</span><h2>Mais ajuda na cozinha.</h2></div><a class="text-link" href="ferramentas.html">Ver todas ↗</a></div><div class="tool-grid tool-grid-small">${others.map(toolCard).join("")}</div></section>`;
+  const h = head({ title: t.title, desc: t.desc, file: t.file, image: BASE + "public/images/institucional/ferramentas-bg.webp", scripts: [`assets/recipes-index.js?v=${VERSION}`, `assets/tools.js?v=${VERSION}`], extra: ld([appLD, breadcrumbLD([["Início", "/"], ["Ferramentas", "ferramentas.html"], [t.name, t.file]]), faqLD(x.faqs)]) });
+  const main = `${crumbs([["Início", "/"], ["Ferramentas", "ferramentas.html"], [t.name, t.file]])}<section class="page-intro container tool-intro"><span class="eyebrow">FERRAMENTA GRATUITA · SEM CADASTRO</span><h1>${esc(t.title)}</h1><p>${esc(t.lead)}</p></section><section class="container tool-page">${toolWidget(t)}${toolContent(t, x)}</section>${relatedRecipes(x.recipes.slice(0, 4), "Receitas para usar com esta ferramenta")}<section class="container section"><div class="section-heading"><div><span class="eyebrow">OUTRAS FERRAMENTAS</span><h2>Mais ajuda na cozinha.</h2></div><a class="text-link" href="ferramentas.html">Ver todas ↗</a></div><div class="tool-grid tool-grid-small">${others.map(toolCard).join("")}</div></section>`;
   write(t.file, page(h, main));
 }
 function toolCard(t) {
