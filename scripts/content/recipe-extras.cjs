@@ -1,7 +1,7 @@
 // Conteúdo extra das 20 receitas originais: dicas, conservação, perguntas
 // frequentes, categoria e palavras-chave para os dados estruturados.
 module.exports = {
-  "Receita-Acaraje.dc.html": {
+  "receita-acaraje.html": {
     category: "Petiscos e salgados",
     keywords: "acarajé, acarajé baiano, bolinho de feijão fradinho, vatapá",
     tips: [
@@ -15,7 +15,7 @@ module.exports = {
       ["Posso fazer acarajé sem dendê?", "Dá para fritar em óleo vegetal, mas o sabor e a cor característicos vêm do azeite de dendê."],
     ],
   },
-  "Receita-ArrozComPequi.dc.html": {
+  "receita-arroz-com-pequi.html": {
     category: "Pratos principais",
     keywords: "arroz com pequi, comida goiana, pequi, arroz com frango",
     tips: [
@@ -29,7 +29,7 @@ module.exports = {
       ["Arroz com pequi leva frango?", "A versão mais comum em Goiás leva frango caipira, mas também existe a versão só com arroz e pequi."],
     ],
   },
-  "Receita-BaiaoDeDois.dc.html": {
+  "receita-baiao-de-dois.html": {
     category: "Pratos principais",
     keywords: "baião de dois, comida nordestina, feijão de corda, queijo coalho",
     tips: [
@@ -43,7 +43,7 @@ module.exports = {
       ["Baião de dois leva nata?", "Em muitas casas do Ceará sim: uma colher de nata no final deixa o prato mais cremoso."],
     ],
   },
-  "Receita-Barreado.dc.html": {
+  "receita-barreado.html": {
     category: "Pratos principais",
     keywords: "barreado, comida paranaense, Morretes, carne cozida na panela de barro",
     tips: [
@@ -57,7 +57,7 @@ module.exports = {
       ["De onde vem o barreado?", "Do litoral do Paraná, especialmente Morretes, Antonina e Paranaguá, ligado às festas de Carnaval."],
     ],
   },
-  "Receita-ButterChicken.dc.html": {
+  "receita-butter-chicken.html": {
     category: "Pratos principais",
     keywords: "butter chicken, frango indiano, murgh makhani, frango ao molho de manteiga",
     tips: [
@@ -71,7 +71,7 @@ module.exports = {
       ["Com o que servir butter chicken?", "Arroz basmati e pão naan são os acompanhamentos clássicos."],
     ],
   },
-  "Receita-Carbonara.dc.html": {
+  "receita-carbonara.html": {
     category: "Massas",
     keywords: "carbonara, espaguete à carbonara, carbonara sem creme de leite, guanciale",
     tips: [
@@ -85,7 +85,7 @@ module.exports = {
       ["Posso trocar guanciale por bacon?", "Pode. O bacon é defumado e muda um pouco o sabor, mas é a substituição mais comum no Brasil."],
     ],
   },
-  "Receita-CevicheClassico.dc.html": {
+  "receita-ceviche-classico.html": {
     category: "Entradas",
     keywords: "ceviche, ceviche peruano, leche de tigre, peixe cru com limão",
     tips: [
@@ -99,7 +99,7 @@ module.exports = {
       ["O que é leche de tigre?", "É o líquido que sobra do ceviche: limão, peixe, pimenta e coentro. No Peru, é servido em copinho como aperitivo."],
     ],
   },
-  "Receita-CheesecakeNY.dc.html": {
+  "receita-cheesecake-nova-york.html": {
     category: "Bolos e doces",
     keywords: "cheesecake, cheesecake de Nova York, cheesecake assado, cream cheese",
     tips: [
@@ -113,7 +113,7 @@ module.exports = {
       ["Posso usar requeijão no lugar do cream cheese?", "O resultado fica mais mole e menos ácido. Para o estilo Nova York, prefira cream cheese em bloco."],
     ],
   },
-  "Receita-CoqAuVin.dc.html": {
+  "receita-coq-au-vin.html": {
     category: "Pratos principais",
     keywords: "coq au vin, frango ao vinho, cozinha francesa, frango ao vinho tinto",
     tips: [
@@ -127,7 +127,7 @@ module.exports = {
       ["Posso fazer coq au vin com sobrecoxa?", "Sim, sobrecoxa e coxa são as partes ideais: ficam suculentas no cozimento longo."],
     ],
   },
-  "Receita-CrepesSuzette.dc.html": {
+  "receita-crepes-suzette.html": {
     category: "Bolos e doces",
     keywords: "crepe suzette, crepes franceses, crepe com laranja, sobremesa flambada",
     tips: [
@@ -141,7 +141,7 @@ module.exports = {
       ["Qual licor usar?", "Grand Marnier ou Cointreau são os clássicos; qualquer licor de laranja funciona."],
     ],
   },
-  "Receita-Feijoada.dc.html": {
+  "receita-feijoada.html": {
     category: "Pratos principais",
     keywords: "feijoada, feijoada completa, feijoada carioca, feijão preto com carnes",
     tips: [
@@ -155,7 +155,7 @@ module.exports = {
       ["Feijoada pode ser feita na pressão?", "Sim: carnes dessalgadas e feijão por 40 minutos após pegar pressão, depois finalize com as linguiças em panela aberta."],
     ],
   },
-  "Receita-PadThai.dc.html": {
+  "receita-pad-thai.html": {
     category: "Massas",
     keywords: "pad thai, macarrão de arroz, comida tailandesa, pad thai de camarão",
     tips: [
@@ -169,7 +169,7 @@ module.exports = {
       ["Pad thai é picante?", "Moderadamente. A pimenta costuma ser servida à parte para cada um ajustar."],
     ],
   },
-  "Receita-PaellaValenciana.dc.html": {
+  "receita-paella-valenciana.html": {
     category: "Pratos principais",
     keywords: "paella valenciana, paella, arroz espanhol, socarrat",
     tips: [
@@ -183,7 +183,7 @@ module.exports = {
       ["Qual arroz usar na paella?", "Bomba ou outro arroz de grão redondo. O arbóreo é um bom substituto."],
     ],
   },
-  "Receita-PaoDeQueijo.dc.html": {
+  "receita-pao-de-queijo.html": {
     category: "Pães e lanches",
     keywords: "pão de queijo, pão de queijo mineiro, polvilho azedo, pão de queijo congelado",
     tips: [
@@ -197,7 +197,7 @@ module.exports = {
       ["Pão de queijo tem glúten?", "Não leva trigo: polvilho é derivado da mandioca. Confira os rótulos para contaminação cruzada."],
     ],
   },
-  "Receita-PatoNoTucupi.dc.html": {
+  "receita-pato-no-tucupi.html": {
     category: "Pratos principais",
     keywords: "pato no tucupi, comida paraense, jambu, Círio de Nazaré",
     tips: [
@@ -211,7 +211,7 @@ module.exports = {
       ["O que é jambu?", "Uma erva amazônica que provoca leve dormência e formigamento na boca."],
     ],
   },
-  "Receita-PizzaMargherita.dc.html": {
+  "receita-pizza-margherita.html": {
     category: "Massas",
     keywords: "pizza margherita, massa de pizza caseira, pizza napolitana, pizza no forno doméstico",
     tips: [
@@ -225,7 +225,7 @@ module.exports = {
       ["Por que se chama margherita?", "A tradição associa o nome à rainha Margherita de Saboia, homenageada com as cores da bandeira italiana."],
     ],
   },
-  "Receita-RamenShoyu.dc.html": {
+  "receita-ramen-shoyu.html": {
     category: "Massas",
     keywords: "ramen, ramen shoyu, lamen caseiro, ovo marinado ajitama",
     tips: [
@@ -239,7 +239,7 @@ module.exports = {
       ["Posso usar macarrão instantâneo?", "Para uma versão rápida, sim. Descarte o tempero do pacote e use o caldo da receita."],
     ],
   },
-  "Receita-Tacaca.dc.html": {
+  "receita-tacaca.html": {
     category: "Sopas e caldos",
     keywords: "tacacá, comida paraense, tucupi, jambu, goma de tapioca",
     tips: [
@@ -253,7 +253,7 @@ module.exports = {
       ["Onde comprar tucupi?", "Em mercados de produtos nortistas, feiras e lojas on-line. Compre sempre tucupi já cozido e com procedência."],
     ],
   },
-  "Receita-TacosAlPastor.dc.html": {
+  "receita-tacos-al-pastor.html": {
     category: "Pratos principais",
     keywords: "tacos al pastor, tacos mexicanos, carne de porco com abacaxi, tortilla de milho",
     tips: [
@@ -267,7 +267,7 @@ module.exports = {
       ["O que é achiote?", "Pasta de urucum com especiarias que dá cor avermelhada. Colorau com cominho é um substituto aceitável."],
     ],
   },
-  "Receita-TagineCordeiro.dc.html": {
+  "receita-tagine-de-cordeiro.html": {
     category: "Pratos principais",
     keywords: "tagine de cordeiro, tajine marroquino, cordeiro com damasco, ras el hanout",
     tips: [

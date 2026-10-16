@@ -272,7 +272,7 @@ ${t(["Forno", "°C", "°F", "Gás"], [
 <div id="pk-result" aria-live="polite"></div>
 </div>`,
     content: `<h2>Mais formas de decidir</h2>
-<p>Tem ingredientes sobrando? Use a <a href="Busca-Geladeira.dc.html">busca por ingredientes da geladeira</a>. Quer planejar a semana inteira? Experimente o <a href="ferramenta-cardapio-semanal.html">cardápio semanal</a> e confira as <a href="ideias-de-cardapio.html">ideias de cardápio</a>.</p>`,
+<p>Tem ingredientes sobrando? Use a <a href="busca-geladeira.html">busca por ingredientes da geladeira</a>. Quer planejar a semana inteira? Experimente o <a href="ferramenta-cardapio-semanal.html">cardápio semanal</a> e confira as <a href="ideias-de-cardapio.html">ideias de cardápio</a>.</p>`,
   },
   {
     file: "ferramenta-cardapio-semanal.html",
